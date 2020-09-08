@@ -10,6 +10,7 @@ import UIKit
 import RxCocoa
 import RxSwift
 import RxGesture
+import SDWebImage
 
 class PlayerVC: UIViewController {
     
@@ -26,13 +27,15 @@ class PlayerVC: UIViewController {
     private var disposeBag = DisposeBag()
     fileprivate var isLoading = BehaviorRelay(value: false)
     fileprivate var cellCurrentIndex = 0
-    fileprivate var arrSongs = DataResult.getAllData()
+    fileprivate var arrSongs: [ResultData] = []
+    fileprivate var isTapOnPlay = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.initRxBindings()
         self.initCollectionView()
+        self.getSongs()
     }
     
     // Function to set up collection view...
@@ -40,7 +43,6 @@ class PlayerVC: UIViewController {
         self.collectionViewSongs.delegate = self
         self.collectionViewSongs.dataSource = self
         self.collectionViewSongs.register(UINib(nibName: "SongCoverPhotoCVCell", bundle: nil), forCellWithReuseIdentifier: "SongCoverPhotoCVCell")
-        self.collectionViewSongs.reloadData()
     }
     
     // Function to initialize Rx for views and variables
@@ -78,7 +80,8 @@ class PlayerVC: UIViewController {
         
         self.playPauseButton.rx.tap
             .subscribe(onNext: { [weak self] in
-                
+                self?.isTapOnPlay = !(self?.isTapOnPlay ?? false)
+                self?.playPauseButton.setImage(self?.isTapOnPlay == true ? UIImage(named: "pause") : UIImage(named: "play"), for: .normal)
             })
             .disposed(by: self.disposeBag)
         
@@ -104,7 +107,8 @@ class PlayerVC: UIViewController {
     }
     
     func setUpPlayer() {
-        self.songTitleLabel.text = self.arrSongs[cellCurrentIndex].text
+        self.songTitleLabel.text = self.arrSongs[cellCurrentIndex].trackName
+        self.songSubtitleLabel.text = self.arrSongs[cellCurrentIndex].artistName
     }
     
     // Function to handle scroll collectionview...
@@ -116,6 +120,28 @@ class PlayerVC: UIViewController {
                 self.collectionViewSongs.scrollToItem(at: indePath, at: .centeredHorizontally, animated: true)
             }
         })
+    }
+    
+    func getSongs() {
+        
+        self.isLoading.accept(true)
+        APIManager.getData(url: self.getUrl(), success: { (response) in
+            self.isLoading.accept(false)
+            print(response)
+            self.arrSongs = response.results
+            self.setUpPlayer()
+            self.collectionViewSongs.reloadData()
+        }) { (error) in
+            print(error.localizedDescription)
+        }
+    }
+    
+    func getUrl() -> String {
+        let searchKeyword = "Shape of you"
+        let searchString = searchKeyword.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+        let baseURL = "https://itunes.apple.com/search?" + "term=\(searchString!)&media=music&entity=musicTrack"
+        print(baseURL)
+        return baseURL
     }
 }
 
@@ -131,6 +157,9 @@ extension PlayerVC: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SongCoverPhotoCVCell", for: indexPath) as! SongCoverPhotoCVCell
+        if let coverImage = self.arrSongs[indexPath.item].artworkUrl100 {
+            cell.songCoverImage.sd_setImage(with: URL(string: coverImage), placeholderImage: nil, options:.refreshCached)
+        }
         return cell
     }
 }

@@ -17,6 +17,7 @@
 		4881A25B2508202100AEB390 /* SongCoverPhotoCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4881A2592508202100AEB390 /* SongCoverPhotoCVCell.swift */; };
 		4881A25C2508202100AEB390 /* SongCoverPhotoCVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4881A25A2508202100AEB390 /* SongCoverPhotoCVCell.xib */; };
 		4881A25E2508226A00AEB390 /* SongModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4881A25D2508226A00AEB390 /* SongModel.swift */; };
+		4881A26025082C8500AEB390 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4881A25F25082C8500AEB390 /* APIManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		4881A2592508202100AEB390 /* SongCoverPhotoCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongCoverPhotoCVCell.swift; sourceTree = "<group>"; };
 		4881A25A2508202100AEB390 /* SongCoverPhotoCVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SongCoverPhotoCVCell.xib; sourceTree = "<group>"; };
 		4881A25D2508226A00AEB390 /* SongModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongModel.swift; sourceTree = "<group>"; };
+		4881A25F25082C8500AEB390 /* APIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		B1DA546E507EDDDFA9FC7FF2 /* Pods-AGMusicPlayer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AGMusicPlayer.release.xcconfig"; path = "Target Support Files/Pods-AGMusicPlayer/Pods-AGMusicPlayer.release.xcconfig"; sourceTree = "<group>"; };
 		FBAB187D370566E169816E84 /* Pods-AGMusicPlayer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AGMusicPlayer.debug.xcconfig"; path = "Target Support Files/Pods-AGMusicPlayer/Pods-AGMusicPlayer.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -74,6 +76,7 @@
 				4881A2482508105300AEB390 /* LaunchScreen.storyboard */,
 				4881A24B2508105300AEB390 /* Info.plist */,
 				4881A25625081B7100AEB390 /* UIApplication+Extension.swift */,
+				4881A25F25082C8500AEB390 /* APIManager.swift */,
 				4881A2552508199200AEB390 /* Player */,
 			);
 			path = AGMusicPlayer;
@@ -232,6 +235,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4881A26025082C8500AEB390 /* APIManager.swift in Sources */,
 				4881A23E2508105100AEB390 /* AppDelegate.swift in Sources */,
 				4881A25E2508226A00AEB390 /* SongModel.swift in Sources */,
 				4881A25725081B7100AEB390 /* UIApplication+Extension.swift in Sources */,

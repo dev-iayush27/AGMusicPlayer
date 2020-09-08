@@ -4,15 +4,21 @@
 target 'AGMusicPlayer' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
-
+  
   # Pods for AGMusicPlayer
-
-# Rx
+  
+  # Network
+  pod 'Alamofire'
+  
+  # Rx
   pod 'RxSwift'
   pod 'RxCocoa'
   pod 'RxGesture'
   
-  #Toast alert
+  # Toast alert
   pod 'Toast-Swift'
-
+  
+  # Image Loader
+  pod 'SDWebImage'
+  
 end
