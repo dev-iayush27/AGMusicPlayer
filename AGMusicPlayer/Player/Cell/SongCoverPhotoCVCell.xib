@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SongCoverPhotoCVCell" id="gTV-IL-0wX" customClass="SongCoverPhotoCVCell" customModule="AGMusicPlayer" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="186" height="150"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="186" height="150"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cover" translatesAutoresizingMaskIntoConstraints="NO" id="DLC-5c-LoA">
+                        <rect key="frame" x="10" y="10" width="166" height="130"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </imageView>
+                </subviews>
+            </view>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="DLC-5c-LoA" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="5f5-Xa-wAI"/>
+                <constraint firstAttribute="trailing" secondItem="DLC-5c-LoA" secondAttribute="trailing" constant="10" id="7Cy-gm-b98"/>
+                <constraint firstItem="DLC-5c-LoA" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="10" id="PFD-dQ-VK4"/>
+                <constraint firstAttribute="bottom" secondItem="DLC-5c-LoA" secondAttribute="bottom" constant="10" id="qL1-rU-eNK"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <size key="customSize" width="186" height="150"/>
+            <connections>
+                <outlet property="songCoverImage" destination="DLC-5c-LoA" id="J0b-fL-dff"/>
+            </connections>
+            <point key="canvasLocation" x="227.536231884058" y="164.73214285714286"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="cover" width="300" height="300"/>
+    </resources>
+</document>
