@@ -11,6 +11,7 @@ import RxCocoa
 import RxSwift
 import RxGesture
 import SDWebImage
+import AVFoundation
 
 class PlayerVC: UIViewController {
     
@@ -29,6 +30,7 @@ class PlayerVC: UIViewController {
     fileprivate var cellCurrentIndex = 0
     fileprivate var arrSongs: [ResultData] = []
     fileprivate var isTapOnPlay = false
+    fileprivate var player = AVQueuePlayer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -81,7 +83,13 @@ class PlayerVC: UIViewController {
         self.playPauseButton.rx.tap
             .subscribe(onNext: { [weak self] in
                 self?.isTapOnPlay = !(self?.isTapOnPlay ?? false)
-                self?.playPauseButton.setImage(self?.isTapOnPlay == true ? UIImage(named: "pause") : UIImage(named: "play"), for: .normal)
+                if self?.isTapOnPlay == true {
+                    self?.playPauseButton.setImage(UIImage(named: "pause"), for: .normal)
+                    self?.play()
+                } else {
+                    self?.playPauseButton.setImage(UIImage(named: "play"), for: .normal)
+                    self?.player.pause()
+                }
             })
             .disposed(by: self.disposeBag)
         
@@ -120,6 +128,14 @@ class PlayerVC: UIViewController {
                 self.collectionViewSongs.scrollToItem(at: indePath, at: .centeredHorizontally, animated: true)
             }
         })
+    }
+    
+    func play() {
+        let previewUrl = self.arrSongs[self.cellCurrentIndex].previewURL ?? "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview111/v4/65/ca/83/65ca8336-2e09-a0bb-a810-2a6b8864e770/mzaf_3545919152242528717.plus.aac.p.m4a"
+        let url = URL(string: previewUrl)
+        self.player.removeAllItems()
+        self.player.insert(AVPlayerItem(url: url!), after: nil)
+        self.player.play()
     }
     
     func getSongs() {

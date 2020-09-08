@@ -12,7 +12,6 @@ import Alamofire
 class APIManager: NSObject {
     
     class func getData(url: String, success: @escaping (_ response: SongResults) -> (), failure: @escaping (_ errorMessage: Error) -> ()) {
-        
         AF.request(url, method: .get)
             .validate()
             .responseJSON { (response) in
