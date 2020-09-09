@@ -24,6 +24,7 @@ class SingleSongPlayerVC: UIViewController {
     @IBOutlet weak var previousButton: UIButton!
     @IBOutlet weak var playPauseButton: UIButton!
     @IBOutlet weak var nextButton: UIButton!
+    @IBOutlet weak var downloadButton: UIButton!
     
     private var disposeBag = DisposeBag()
     fileprivate var isLoading = BehaviorRelay(value: false)
@@ -36,9 +37,7 @@ class SingleSongPlayerVC: UIViewController {
         
         self.initRxBindings()
         self.initSetUpData()
-        
-        print(self.songData ?? "")
-        print(self.songData?.previewURL ?? "")
+        self.initNavBar()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -46,6 +45,10 @@ class SingleSongPlayerVC: UIViewController {
         
         self.songCoverImage.layer.cornerRadius = 16
         self.songCoverImage.clipsToBounds = true
+    }
+    
+    func initNavBar() {
+        self.title = "Single Song Player"
     }
     
     func initRxBindings() {
@@ -76,14 +79,22 @@ class SingleSongPlayerVC: UIViewController {
             .subscribe(onNext: { [weak self] in
                 self?.isTapOnPlay = !(self?.isTapOnPlay ?? false)
                 if self?.isTapOnPlay == true {
-                    self?.playPauseButton.setImage(UIImage(named: "pause"), for: .normal)
                     self?.play()
                 } else {
-                    self?.playPauseButton.setImage(UIImage(named: "play"), for: .normal)
-                    self?.player.pause()
+                    self?.pause()
                 }
             })
             .disposed(by: self.disposeBag)
+    }
+    
+    func play() {
+        self.playPauseButton.setImage(UIImage(named: "pause"), for: .normal)
+        self.playUrl()
+    }
+    
+    func pause() {
+        self.playPauseButton.setImage(UIImage(named: "play"), for: .normal)
+        self.player.pause()
     }
     
     func initSetUpData() {
@@ -94,8 +105,8 @@ class SingleSongPlayerVC: UIViewController {
         self.songSubtitleLabel.text = self.songData?.artistName ?? ""
     }
     
-    func play() {
-        guard let previewUrl = self.songData?.previewURL else {
+    func playUrl() {
+        guard let previewUrl = self.songData?.previewUrl else {
             AppDelegate.showToast(message: "Preview URL not found.", isLong: true)
             self.playPauseButton.setImage(UIImage(named: "play"), for: .normal)
             self.player.pause()
@@ -105,5 +116,9 @@ class SingleSongPlayerVC: UIViewController {
         self.player.removeAllItems()
         self.player.insert(AVPlayerItem(url: url!), after: nil)
         self.player.play()
+    }
+    
+    deinit {
+        self.pause()
     }
 }

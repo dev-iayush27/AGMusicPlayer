@@ -28,7 +28,7 @@ class PlayerVC: UIViewController {
     private var disposeBag = DisposeBag()
     fileprivate var isLoading = BehaviorRelay(value: false)
     fileprivate var cellCurrentIndex = 0
-    fileprivate var arrSongs: [ResultData] = []
+    internal var arrSongs: [ResultData] = []
     fileprivate var isTapOnPlay = false
     fileprivate var player = AVQueuePlayer()
     
@@ -37,7 +37,12 @@ class PlayerVC: UIViewController {
         
         self.initRxBindings()
         self.initCollectionView()
-        self.getSongs()
+        self.setUpPlayer()
+        self.initNavBar()
+    }
+    
+    func initNavBar() {
+        self.title = "Multiple Song Player"
     }
     
     // Function to set up collection view...
@@ -45,6 +50,7 @@ class PlayerVC: UIViewController {
         self.collectionViewSongs.delegate = self
         self.collectionViewSongs.dataSource = self
         self.collectionViewSongs.register(UINib(nibName: "SongCoverPhotoCVCell", bundle: nil), forCellWithReuseIdentifier: "SongCoverPhotoCVCell")
+        self.collectionViewSongs.reloadData()
     }
     
     // Function to initialize Rx for views and variables
@@ -67,6 +73,7 @@ class PlayerVC: UIViewController {
                     self?.scrollTheCollectionView()
                 }
                 self?.setUpPlayer()
+                self?.play()
             })
             .disposed(by: self.disposeBag)
         
@@ -77,19 +84,13 @@ class PlayerVC: UIViewController {
                     self?.scrollTheCollectionView()
                 }
                 self?.setUpPlayer()
+                self?.play()
             })
             .disposed(by: self.disposeBag)
         
         self.playPauseButton.rx.tap
             .subscribe(onNext: { [weak self] in
-                self?.isTapOnPlay = !(self?.isTapOnPlay ?? false)
-                if self?.isTapOnPlay == true {
-                    self?.playPauseButton.setImage(UIImage(named: "pause"), for: .normal)
-                    self?.play()
-                } else {
-                    self?.playPauseButton.setImage(UIImage(named: "play"), for: .normal)
-                    self?.player.pause()
-                }
+                self?.playAndPause()
             })
             .disposed(by: self.disposeBag)
         
@@ -110,8 +111,34 @@ class PlayerVC: UIViewController {
                     }
                 }
                 self.setUpPlayer()
+                self.play()
             })
             .disposed(by: disposeBag)
+    }
+    
+    deinit {
+        self.pause()
+    }
+    
+    func playAndPause() {
+        self.isTapOnPlay = !self.isTapOnPlay
+        if self.isTapOnPlay == true {
+            self.play()
+        } else {
+            self.pause()
+        }
+    }
+    
+    func play() {
+        self.isTapOnPlay = true
+        self.playPauseButton.setImage(UIImage(named: "pause"), for: .normal)
+        self.playUrl()
+    }
+    
+    func pause() {
+        self.isTapOnPlay = false
+        self.playPauseButton.setImage(UIImage(named: "play"), for: .normal)
+        self.player.pause()
     }
     
     func setUpPlayer() {
@@ -130,33 +157,16 @@ class PlayerVC: UIViewController {
         })
     }
     
-    func play() {
-        let previewUrl = self.arrSongs[self.cellCurrentIndex].previewURL ?? "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview111/v4/65/ca/83/65ca8336-2e09-a0bb-a810-2a6b8864e770/mzaf_3545919152242528717.plus.aac.p.m4a"
+    func playUrl() {
+        guard let previewUrl = self.arrSongs[self.cellCurrentIndex].previewUrl else {
+            AppDelegate.showToast(message: "Preview URL not found.", isLong: true)
+            self.pause()
+            return
+        }
         let url = URL(string: previewUrl)
         self.player.removeAllItems()
         self.player.insert(AVPlayerItem(url: url!), after: nil)
         self.player.play()
-    }
-    
-    func getSongs() {
-        self.isLoading.accept(true)
-        APIManager.getData(url: self.getUrl(), success: { (response) in
-            self.isLoading.accept(false)
-            print(response)
-            self.arrSongs = response.results ?? []
-            self.setUpPlayer()
-            self.collectionViewSongs.reloadData()
-        }) { (error) in
-            print(error.localizedDescription)
-        }
-    }
-    
-    func getUrl() -> String {
-        let searchKeyword = "justin bieber"
-        let searchString = searchKeyword.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
-        let baseURL = "https://itunes.apple.com/search?" + "term=\(searchString!)&media=music&entity=musicTrack"
-        print(baseURL)
-        return baseURL
     }
 }
 

@@ -111,8 +111,8 @@
 		483638F325094E91003CB440 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				483638F525094EAB003CB440 /* Model */,
 				483638F425094EA1003CB440 /* APIManager */,
+				483638F525094EAB003CB440 /* Model */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -488,6 +488,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ayush.AGMusicPlayer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -507,6 +508,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ayush.AGMusicPlayer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

@@ -35,6 +35,7 @@ class SongsListVC: UIViewController {
     
     func initNavBar() {
         self.title = "Songs"
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "song"), style: .plain, target: self, action: #selector(self.handleSongs))
     }
     
     func initTableViewSetUp() {
@@ -54,6 +55,12 @@ class SongsListVC: UIViewController {
                 }
         }
         .disposed(by: disposeBag)
+    }
+    
+    @objc private func handleSongs() {
+        let vc = PlayerVC(nibName: "PlayerVC", bundle: nil)
+        vc.arrSongs = self.arrSongs
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     func getUrl() -> String {

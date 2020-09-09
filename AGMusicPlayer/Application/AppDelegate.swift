@@ -27,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let vc = SongsListVC(nibName: "SongsListVC", bundle: nil)
         let navController = UINavigationController(rootViewController: vc)
         navController.navigationBar.isHidden = false
-        navController.navigationBar.prefersLargeTitles = true
+        navController.navigationBar.prefersLargeTitles = false
         window.rootViewController = navController
         window.makeKeyAndVisible()
         self.window = window

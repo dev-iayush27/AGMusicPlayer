@@ -15,7 +15,6 @@ class APIManager: NSObject {
         AF.request(url, method: .get)
             .validate()
             .responseJSON { (response) in
-                print(response)
                 guard response.error == nil else {
                     print("error calling on \(url)")
                     return
@@ -26,6 +25,7 @@ class APIManager: NSObject {
                 }
                 do {
                     let result = try JSONDecoder().decode(SongResults.self, from: data)
+                    print(result.results?[0].previewUrl ?? "NO URL")
                     success(result)
                 } catch let jsonErr {
                     print("failed to decode, \(jsonErr.localizedDescription)")
