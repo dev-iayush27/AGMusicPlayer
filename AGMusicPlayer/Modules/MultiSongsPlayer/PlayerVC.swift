@@ -144,6 +144,7 @@ class PlayerVC: UIViewController {
     func setUpPlayer() {
         self.songTitleLabel.text = self.arrSongs[cellCurrentIndex].trackName
         self.songSubtitleLabel.text = self.arrSongs[cellCurrentIndex].artistName
+        self.songTotalTimeLabel.text = self.arrSongs[cellCurrentIndex].trackTimeMillis?.msToSeconds.minuteSecondMS
     }
     
     // Function to handle scroll collectionview...
