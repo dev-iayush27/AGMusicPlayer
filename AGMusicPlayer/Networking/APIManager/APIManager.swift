@@ -25,8 +25,8 @@ class APIManager: NSObject {
                     return
                 }
                 do {
-                    let model = try JSONDecoder().decode(SongResults.self, from: data)
-                    success(model)
+                    let result = try JSONDecoder().decode(SongResults.self, from: data)
+                    success(result)
                 } catch let jsonErr {
                     print("failed to decode, \(jsonErr.localizedDescription)")
                     failure(jsonErr)

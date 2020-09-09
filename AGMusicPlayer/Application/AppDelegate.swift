@@ -24,9 +24,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     private func setUpRootScreen() {
         let window = UIWindow(frame: UIScreen.main.bounds)
-        let vc = PlayerVC(nibName: "PlayerVC", bundle: nil)
+        let vc = SongsListVC(nibName: "SongsListVC", bundle: nil)
         let navController = UINavigationController(rootViewController: vc)
-        navController.navigationBar.isHidden = true
+        navController.navigationBar.isHidden = false
+        navController.navigationBar.prefersLargeTitles = true
         window.rootViewController = navController
         window.makeKeyAndVisible()
         self.window = window

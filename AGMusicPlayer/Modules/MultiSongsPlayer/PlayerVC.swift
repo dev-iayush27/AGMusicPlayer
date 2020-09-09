@@ -139,12 +139,11 @@ class PlayerVC: UIViewController {
     }
     
     func getSongs() {
-        
         self.isLoading.accept(true)
         APIManager.getData(url: self.getUrl(), success: { (response) in
             self.isLoading.accept(false)
             print(response)
-            self.arrSongs = response.results
+            self.arrSongs = response.results ?? []
             self.setUpPlayer()
             self.collectionViewSongs.reloadData()
         }) { (error) in
@@ -153,7 +152,7 @@ class PlayerVC: UIViewController {
     }
     
     func getUrl() -> String {
-        let searchKeyword = "Shape of you"
+        let searchKeyword = "justin bieber"
         let searchString = searchKeyword.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
         let baseURL = "https://itunes.apple.com/search?" + "term=\(searchString!)&media=music&entity=musicTrack"
         print(baseURL)
