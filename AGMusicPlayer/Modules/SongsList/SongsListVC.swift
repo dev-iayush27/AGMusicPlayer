@@ -14,15 +14,18 @@ import SDWebImage
 
 class SongsListVC: UIViewController {
     
+    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableViewSongs: UITableView!
     
     private var disposeBag = DisposeBag()
+    internal var bundle: [String: Any] = [:]
     fileprivate var isLoading = BehaviorRelay(value: false)
     fileprivate var arrSongs: [ResultData] = []
+    var navigator: SongsListNavigator?
+    var service: SongsListService?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.initSetUp()
     }
     
@@ -30,7 +33,7 @@ class SongsListVC: UIViewController {
         self.initNavBar()
         self.initRxBindings()
         self.initTableViewSetUp()
-        self.getSongs()
+        self.searchBar.delegate = self
     }
     
     func initNavBar() {
@@ -58,28 +61,50 @@ class SongsListVC: UIViewController {
     }
     
     @objc private func handleSongs() {
-        let vc = PlayerVC(nibName: "PlayerVC", bundle: nil)
-        vc.arrSongs = self.arrSongs
-        self.navigationController?.pushViewController(vc, animated: true)
+        let bundle = [
+            Constants.BundleConstants.resultData: self.arrSongs
+        ]
+        self.navigator?.navigateTo(destination: Destination.multiSongPlayer, bundle: bundle)
     }
     
-    func getUrl() -> String {
-        let searchKeyword = "justin bieber"
-        let searchString = searchKeyword.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
-        let baseURL = "https://itunes.apple.com/search?" + "term=\(searchString!)&media=music&entity=musicTrack"
-        print(baseURL)
-        return baseURL
-    }
-    
-    func getSongs() {
+    func getSongsData() {
+        let parameters: [String: Any] = [
+            Constants.ApiConstants.term: self.searchBar.text ?? "",
+            Constants.ApiConstants.media: "music",
+            Constants.ApiConstants.entity: "musicTrack"
+        ]
         self.isLoading.accept(true)
-        APIManager.getData(url: self.getUrl(), success: { (response) in
+        let target = APIManagerTarget.searchAPI(parameters: parameters)
+        APIManager.request(target: target, responseType: SongResults.self, onSuccess: { (result) in
             self.isLoading.accept(false)
-            print(response)
-            self.arrSongs = response.results ?? []
+            self.arrSongs.removeAll()
+            self.arrSongs = result?.results ?? []
             self.tableViewSongs.reloadData()
-        }) { (error) in
-            print(error.localizedDescription)
+            self.saveSearchListIntoAPICache(apiResponse: result!, query: self.searchBar.text ?? "")
+        }) { (err) in
+            self.isLoading.accept(false)
+            print(err)
+            AppDelegate.showToast(message: "Something went wrong.")
+        }
+    }
+    
+    func saveSearchListIntoAPICache(apiResponse: SongResults, query: String) {
+        let modifiedQuery = query.replacingOccurrences(of: " ", with: Constants.CommonConstants.whiteSpaceAlternative)
+        let responseName = "SearchList_\(modifiedQuery).json"
+        APICacheManager.saveApiCacheResponse(responseName: responseName, responseType: SongResults.self, apiResponse: apiResponse)
+    }
+    
+    func getSavedSearchListFromAPICache(query: String) {
+        let modifiedQuery = query.replacingOccurrences(of: " ", with: Constants.CommonConstants.whiteSpaceAlternative)
+        let responseName = "SearchList_\(modifiedQuery).json"
+        APICacheManager.checkApiCacheAvailable(responseName: responseName, responseType: SongResults.self) { (status, response) in
+            if (status && response?.results != nil) {
+                self.arrSongs.removeAll()
+                self.arrSongs = response?.results ?? []
+                self.tableViewSongs.reloadData()
+            } else {
+                self.getSongsData()
+            }
         }
     }
 }
@@ -101,12 +126,21 @@ extension SongsListVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = SingleSongPlayerVC(nibName: "SingleSongPlayerVC", bundle: nil)
-        vc.songData = self.arrSongs[indexPath.item]
-        self.navigationController?.pushViewController(vc, animated: true)
+        let bundle = [
+            Constants.BundleConstants.songData: self.arrSongs[indexPath.item]
+        ]
+        self.navigator?.navigateTo(destination: Destination.singleSongPlayer, bundle: bundle)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 80
+    }
+}
+
+extension SongsListVC: UISearchBarDelegate {
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        self.searchBar.resignFirstResponder()
+        self.getSavedSearchListFromAPICache(query: self.searchBar.text ?? "")
     }
 }

@@ -27,6 +27,8 @@ class SingleSongPlayerVC: UIViewController {
     @IBOutlet weak var downloadButton: UIButton!
     
     private var disposeBag = DisposeBag()
+    internal var bundle: [String: Any] = [:]
+
     fileprivate var isLoading = BehaviorRelay(value: false)
     internal var songData: ResultData?
     fileprivate var isTapOnPlay = false
@@ -34,6 +36,10 @@ class SingleSongPlayerVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if let songData = bundle[Constants.BundleConstants.songData] as? ResultData {
+            self.songData = songData
+        }
         
         self.initRxBindings()
         self.initSetUpData()

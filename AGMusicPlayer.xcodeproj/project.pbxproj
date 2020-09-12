@@ -3,11 +3,10 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		370973BFF7495C75F772BB4B /* Pods_AGMusicPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 253C069C6F58EFA4B9F4047A /* Pods_AGMusicPlayer.framework */; };
 		483638E425094C2C003CB440 /* SongsListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 483638E225094C2C003CB440 /* SongsListVC.swift */; };
 		483638E525094C2C003CB440 /* SongsListVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 483638E325094C2C003CB440 /* SongsListVC.xib */; };
 		483638EA25094D15003CB440 /* SongsTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 483638E825094D15003CB440 /* SongsTVCell.swift */; };
@@ -24,10 +23,20 @@
 		4881A25C2508202100AEB390 /* SongCoverPhotoCVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4881A25A2508202100AEB390 /* SongCoverPhotoCVCell.xib */; };
 		4881A25E2508226A00AEB390 /* SongModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4881A25D2508226A00AEB390 /* SongModel.swift */; };
 		4881A26025082C8500AEB390 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4881A25F25082C8500AEB390 /* APIManager.swift */; };
+		48A70C41250C0B90005E5969 /* APICacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A70C40250C0B90005E5969 /* APICacheManager.swift */; };
+		48A70C49250C25BC005E5969 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A70C44250C25BC005E5969 /* NetworkError.swift */; };
+		48A70C4F250C26B4005E5969 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A70C4E250C26B4005E5969 /* Constants.swift */; };
+		48A70C52250C313B005E5969 /* SongsListNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A70C51250C313B005E5969 /* SongsListNavigator.swift */; };
+		48A70C55250C324D005E5969 /* RootNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A70C54250C324D005E5969 /* RootNavigator.swift */; };
+		48A70C57250C33F7005E5969 /* SingleSongPlayerNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A70C56250C33F7005E5969 /* SingleSongPlayerNavigator.swift */; };
+		48A70C59250C348E005E5969 /* PlayerNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A70C58250C348E005E5969 /* PlayerNavigator.swift */; };
+		48A70C5D250C41B4005E5969 /* SongListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A70C5C250C41B4005E5969 /* SongListService.swift */; };
+		48A70C5F250C4579005E5969 /* ErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A70C5E250C4579005E5969 /* ErrorResponse.swift */; };
+		48B3015F250D65F200C3A05A /* APIManagerTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B3015E250D65F200C3A05A /* APIManagerTarget.swift */; };
+		7203C560888EB092D0987358 /* libPods-AGMusicPlayer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B0E1E816DCD969EDC6E93F81 /* libPods-AGMusicPlayer.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		253C069C6F58EFA4B9F4047A /* Pods_AGMusicPlayer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AGMusicPlayer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		483638E225094C2C003CB440 /* SongsListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongsListVC.swift; sourceTree = "<group>"; };
 		483638E325094C2C003CB440 /* SongsListVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SongsListVC.xib; sourceTree = "<group>"; };
 		483638E825094D15003CB440 /* SongsTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongsTVCell.swift; sourceTree = "<group>"; };
@@ -46,6 +55,17 @@
 		4881A25A2508202100AEB390 /* SongCoverPhotoCVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SongCoverPhotoCVCell.xib; sourceTree = "<group>"; };
 		4881A25D2508226A00AEB390 /* SongModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongModel.swift; sourceTree = "<group>"; };
 		4881A25F25082C8500AEB390 /* APIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
+		48A70C40250C0B90005E5969 /* APICacheManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APICacheManager.swift; sourceTree = "<group>"; };
+		48A70C44250C25BC005E5969 /* NetworkError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		48A70C4E250C26B4005E5969 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		48A70C51250C313B005E5969 /* SongsListNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongsListNavigator.swift; sourceTree = "<group>"; };
+		48A70C54250C324D005E5969 /* RootNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootNavigator.swift; sourceTree = "<group>"; };
+		48A70C56250C33F7005E5969 /* SingleSongPlayerNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleSongPlayerNavigator.swift; sourceTree = "<group>"; };
+		48A70C58250C348E005E5969 /* PlayerNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerNavigator.swift; sourceTree = "<group>"; };
+		48A70C5C250C41B4005E5969 /* SongListService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongListService.swift; sourceTree = "<group>"; };
+		48A70C5E250C4579005E5969 /* ErrorResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorResponse.swift; sourceTree = "<group>"; };
+		48B3015E250D65F200C3A05A /* APIManagerTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManagerTarget.swift; sourceTree = "<group>"; };
+		B0E1E816DCD969EDC6E93F81 /* libPods-AGMusicPlayer.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AGMusicPlayer.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1DA546E507EDDDFA9FC7FF2 /* Pods-AGMusicPlayer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AGMusicPlayer.release.xcconfig"; path = "Target Support Files/Pods-AGMusicPlayer/Pods-AGMusicPlayer.release.xcconfig"; sourceTree = "<group>"; };
 		FBAB187D370566E169816E84 /* Pods-AGMusicPlayer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AGMusicPlayer.debug.xcconfig"; path = "Target Support Files/Pods-AGMusicPlayer/Pods-AGMusicPlayer.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -55,7 +75,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				370973BFF7495C75F772BB4B /* Pods_AGMusicPlayer.framework in Frameworks */,
+				7203C560888EB092D0987358 /* libPods-AGMusicPlayer.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -66,8 +86,10 @@
 			isa = PBXGroup;
 			children = (
 				483638E725094CFF003CB440 /* Cell */,
+				48A70C51250C313B005E5969 /* SongsListNavigator.swift */,
 				483638E225094C2C003CB440 /* SongsListVC.swift */,
 				483638E325094C2C003CB440 /* SongsListVC.xib */,
+				48A70C5C250C41B4005E5969 /* SongListService.swift */,
 			);
 			path = SongsList;
 			sourceTree = "<group>";
@@ -84,6 +106,7 @@
 		483638EC25094E1D003CB440 /* SingleSongPlay */ = {
 			isa = PBXGroup;
 			children = (
+				48A70C56250C33F7005E5969 /* SingleSongPlayerNavigator.swift */,
 				483638ED25094E3D003CB440 /* SingleSongPlayerVC.swift */,
 				483638EE25094E3D003CB440 /* SingleSongPlayerVC.xib */,
 			);
@@ -94,7 +117,6 @@
 			isa = PBXGroup;
 			children = (
 				4881A23D2508105100AEB390 /* AppDelegate.swift */,
-				4881A25625081B7100AEB390 /* UIApplication+Extension.swift */,
 				4881A24B2508105300AEB390 /* Info.plist */,
 			);
 			path = Application;
@@ -111,6 +133,7 @@
 		483638F325094E91003CB440 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				48A70C42250C0BA1005E5969 /* APICache */,
 				483638F425094EA1003CB440 /* APIManager */,
 				483638F525094EAB003CB440 /* Model */,
 			);
@@ -121,6 +144,8 @@
 			isa = PBXGroup;
 			children = (
 				4881A25F25082C8500AEB390 /* APIManager.swift */,
+				48B3015E250D65F200C3A05A /* APIManagerTarget.swift */,
+				48A70C44250C25BC005E5969 /* NetworkError.swift */,
 			);
 			path = APIManager;
 			sourceTree = "<group>";
@@ -129,6 +154,7 @@
 			isa = PBXGroup;
 			children = (
 				4881A25D2508226A00AEB390 /* SongModel.swift */,
+				48A70C5E250C4579005E5969 /* ErrorResponse.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -144,6 +170,7 @@
 		483638F725094EFA003CB440 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				48A70C53250C3234005E5969 /* Navigator */,
 				483638F625094ED2003CB440 /* LaunchScreen */,
 				483638E625094CEE003CB440 /* SongsList */,
 				483638EC25094E1D003CB440 /* SingleSongPlay */,
@@ -174,6 +201,7 @@
 			isa = PBXGroup;
 			children = (
 				483638F125094E58003CB440 /* Application */,
+				48A70C50250C26BE005E5969 /* Helper */,
 				483638F225094E80003CB440 /* Resources */,
 				483638F325094E91003CB440 /* Networking */,
 				483638F725094EFA003CB440 /* Modules */,
@@ -185,6 +213,7 @@
 			isa = PBXGroup;
 			children = (
 				4881A25825081FFA00AEB390 /* Cell */,
+				48A70C58250C348E005E5969 /* PlayerNavigator.swift */,
 				4881A251250810FF00AEB390 /* PlayerVC.swift */,
 				4881A252250810FF00AEB390 /* PlayerVC.xib */,
 			);
@@ -200,10 +229,51 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		48A70C42250C0BA1005E5969 /* APICache */ = {
+			isa = PBXGroup;
+			children = (
+				48A70C40250C0B90005E5969 /* APICacheManager.swift */,
+			);
+			path = APICache;
+			sourceTree = "<group>";
+		};
+		48A70C50250C26BE005E5969 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				48A70C5B250C3A8C005E5969 /* Extension */,
+				48A70C5A250C3A7E005E5969 /* Constants */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		48A70C53250C3234005E5969 /* Navigator */ = {
+			isa = PBXGroup;
+			children = (
+				48A70C54250C324D005E5969 /* RootNavigator.swift */,
+			);
+			path = Navigator;
+			sourceTree = "<group>";
+		};
+		48A70C5A250C3A7E005E5969 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				48A70C4E250C26B4005E5969 /* Constants.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
+		48A70C5B250C3A8C005E5969 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				4881A25625081B7100AEB390 /* UIApplication+Extension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		8CA9A2F8C2380CABCA5E4389 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				253C069C6F58EFA4B9F4047A /* Pods_AGMusicPlayer.framework */,
+				B0E1E816DCD969EDC6E93F81 /* libPods-AGMusicPlayer.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -228,7 +298,6 @@
 				4881A2362508105000AEB390 /* Sources */,
 				4881A2372508105000AEB390 /* Frameworks */,
 				4881A2382508105000AEB390 /* Resources */,
-				0812B2A97E2688CD4C8E7B0B /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -290,23 +359,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0812B2A97E2688CD4C8E7B0B /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AGMusicPlayer/Pods-AGMusicPlayer-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AGMusicPlayer/Pods-AGMusicPlayer-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AGMusicPlayer/Pods-AGMusicPlayer-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		777A1F8EF42B6E09B68F5E4C /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -336,14 +388,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				48A70C59250C348E005E5969 /* PlayerNavigator.swift in Sources */,
 				483638EA25094D15003CB440 /* SongsTVCell.swift in Sources */,
+				48A70C55250C324D005E5969 /* RootNavigator.swift in Sources */,
+				48A70C41250C0B90005E5969 /* APICacheManager.swift in Sources */,
+				48A70C57250C33F7005E5969 /* SingleSongPlayerNavigator.swift in Sources */,
 				4881A26025082C8500AEB390 /* APIManager.swift in Sources */,
+				48A70C52250C313B005E5969 /* SongsListNavigator.swift in Sources */,
 				4881A23E2508105100AEB390 /* AppDelegate.swift in Sources */,
 				4881A25E2508226A00AEB390 /* SongModel.swift in Sources */,
+				48A70C4F250C26B4005E5969 /* Constants.swift in Sources */,
 				4881A25725081B7100AEB390 /* UIApplication+Extension.swift in Sources */,
 				4881A25B2508202100AEB390 /* SongCoverPhotoCVCell.swift in Sources */,
 				483638EF25094E3D003CB440 /* SingleSongPlayerVC.swift in Sources */,
+				48B3015F250D65F200C3A05A /* APIManagerTarget.swift in Sources */,
 				483638E425094C2C003CB440 /* SongsListVC.swift in Sources */,
+				48A70C49250C25BC005E5969 /* NetworkError.swift in Sources */,
+				48A70C5D250C41B4005E5969 /* SongListService.swift in Sources */,
+				48A70C5F250C4579005E5969 /* ErrorResponse.swift in Sources */,
 				4881A253250810FF00AEB390 /* PlayerVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -484,6 +546,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GQZ3Z44547;
 				INFOPLIST_FILE = /Users/ayushgupta/Documents/Projects/AGMusicPlayer/AGMusicPlayer/Application/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -504,6 +567,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GQZ3Z44547;
 				INFOPLIST_FILE = /Users/ayushgupta/Documents/Projects/AGMusicPlayer/AGMusicPlayer/Application/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

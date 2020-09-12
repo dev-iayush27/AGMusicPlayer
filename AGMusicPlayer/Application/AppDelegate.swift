@@ -8,6 +8,7 @@
 
 import UIKit
 import Toast_Swift
+import IQKeyboardManagerSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,20 +18,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        self.setUpRootScreen()
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+        RootNavigator().showRootScreen()
+        
+        IQKeyboardManager.shared.enable = true
         
         return true
-    }
-    
-    private func setUpRootScreen() {
-        let window = UIWindow(frame: UIScreen.main.bounds)
-        let vc = SongsListVC(nibName: "SongsListVC", bundle: nil)
-        let navController = UINavigationController(rootViewController: vc)
-        navController.navigationBar.isHidden = false
-        navController.navigationBar.prefersLargeTitles = false
-        window.rootViewController = navController
-        window.makeKeyAndVisible()
-        self.window = window
     }
     
     func applicationWillResignActive(_ application: UIApplication) {
@@ -67,11 +60,6 @@ extension AppDelegate {
     static var currentWindow: UIWindow {
         return currentDelegate.window!
     }
-    
-    // Show Root Router
-    //    static func showRootRouter(_ isSplash: Bool = true) {
-    //        RootRouter().showRootScreen(isSplash)
-    //    }
     
     // Loader start
     static func startLoading() {

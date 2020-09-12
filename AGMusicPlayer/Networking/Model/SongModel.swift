@@ -14,6 +14,7 @@ struct SongResults: Codable {
 }
 
 struct ResultData: Codable {
+    
     var artistID: Int?
     var artistName: String?
     var collectionName: String?

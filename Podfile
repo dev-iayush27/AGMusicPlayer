@@ -1,24 +1,40 @@
 # Uncomment the next line to define a global platform for your project
-# platform :ios, '9.0'
+platform :ios, '12.0'
+use_modular_headers!
 
-target 'AGMusicPlayer' do
-  # Comment the next line if you don't want to use dynamic frameworks
-  use_frameworks!
+def core_pods
+  #Keyboard Management
+  pod 'IQKeyboardManagerSwift'
   
-  # Pods for AGMusicPlayer
+  #Disk
+  pod 'Disk'
+end
+
+def ui_pods
+  #Toast alert
+  pod 'Toast-Swift'
   
-  # Network
+  #Asynchronous image download and cache
+  pod 'SDWebImage'
+end
+
+def rx_pods
+  # Networking
   pod 'Alamofire'
+  pod 'Moya/RxSwift'
+  
+  # Model
+  pod 'ModelMapper'
   
   # Rx
   pod 'RxSwift'
   pod 'RxCocoa'
   pod 'RxGesture'
-  
-  # Toast alert
-  pod 'Toast-Swift'
-  
-  # Image Loader
-  pod 'SDWebImage'
-  
+end
+
+
+target 'AGMusicPlayer' do
+  core_pods
+  ui_pods
+  rx_pods
 end

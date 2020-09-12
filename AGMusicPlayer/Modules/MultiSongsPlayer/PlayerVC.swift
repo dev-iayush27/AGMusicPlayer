@@ -26,6 +26,7 @@ class PlayerVC: UIViewController {
     @IBOutlet weak var nextButton: UIButton!
     
     private var disposeBag = DisposeBag()
+    internal var bundle: [String: Any] = [:]
     fileprivate var isLoading = BehaviorRelay(value: false)
     fileprivate var cellCurrentIndex = 0
     internal var arrSongs: [ResultData] = []
@@ -34,6 +35,10 @@ class PlayerVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if let arrSongs = bundle[Constants.BundleConstants.resultData] as? [ResultData] {
+            self.arrSongs = arrSongs
+        }
         
         self.initRxBindings()
         self.initCollectionView()

@@ -7,30 +7,55 @@
 //
 
 import Foundation
-import Alamofire
+//import Alamofire
+import Moya
 
-class APIManager: NSObject {
+final class APIManager: NSObject {
     
-    class func getData(url: String, success: @escaping (_ response: SongResults) -> (), failure: @escaping (_ errorMessage: Error) -> ()) {
-        AF.request(url, method: .get)
-            .validate()
-            .responseJSON { (response) in
-                guard response.error == nil else {
-                    print("error calling on \(url)")
-                    return
+    static let provider = MoyaProvider<APIManagerTarget>()
+    
+    static func request<T: Decodable>(target: APIManagerTarget, responseType: T.Type, onSuccess: @escaping (T?) -> (), onFailure: @escaping (Error) -> ()) {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        provider.request(target) { (result) in
+            UIApplication.shared.isNetworkActivityIndicatorVisible = false
+            AppDelegate.finishLoading()
+            switch result {
+            case .success(let response):
+                if response.statusCode >= 200 && response.statusCode <= 300 {
+                    do {
+                        let result = try JSONDecoder().decode(T.self, from: response.data)
+                        onSuccess(result)
+                    } catch let jsonErr {
+                        print("failed to decode, \(jsonErr.localizedDescription)")
+                        onFailure(jsonErr)
+                    }
+                } else {
+                    let error = NSError(domain: "com.vsemenchenko.networkLayer", code: 0, userInfo: [NSLocalizedDescriptionKey: "Parsing Error"])
+                    onFailure(checkFailureError(error))
                 }
-                guard let data = response.data else {
-                    print("there was an error with the data")
-                    return
-                }
-                do {
-                    let result = try JSONDecoder().decode(SongResults.self, from: data)
-                    print(result.results?[0].previewUrl ?? "NO URL")
-                    success(result)
-                } catch let jsonErr {
-                    print("failed to decode, \(jsonErr.localizedDescription)")
-                    failure(jsonErr)
-                }
+            case .failure(let error):
+                onFailure(error)
+            }
         }
     }
+    
+    //    func fetch<T: Decodable>(responseType: T.Type, endPoint: String, apiName: APIName, parameters: [String: Any], onCompletion: @escaping (T?, Error?, Int) -> ()) {
+    //        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+    //        AF.request(baseURL + endPoint, method: method, parameters: parameters, encoding: encoding, headers: headers)
+    //            .validate()
+    //            .responseJSON { (response) in
+    //                UIApplication.shared.isNetworkActivityIndicatorVisible = false
+    //                if response.error != nil || response.data == nil {
+    //                    onCompletion(T.self as? T, response.error, (response.response?.statusCode)!)
+    //                    return
+    //                }
+    //                do {
+    //                    let result = try JSONDecoder().decode(T.self, from: response.data!)
+    //                    onCompletion(result, response.error, (response.response?.statusCode)!)
+    //                } catch let jsonErr {
+    //                    print("failed to decode, \(jsonErr.localizedDescription)")
+    //                    onCompletion(T.self as? T, jsonErr, (response.response?.statusCode)!)
+    //                }
+    //        }
+    //    }
 }
