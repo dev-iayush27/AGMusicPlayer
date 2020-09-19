@@ -1,5 +1,5 @@
 //
-//  SongsListService.swift
+//  ViewControllerResultDelegate.swift
 //  AGMusicPlayer
 //
 //  Created by Ayush Gupta on 12/09/20.
@@ -7,12 +7,7 @@
 //
 
 import Foundation
-import RxSwift
 
-class SongsListService {
-   
-}
-
-extension SongsListService {
-   
+protocol ViewControllerResultDelegate {
+    func viewControllerResultBundle(bundle: [String: Any])
 }

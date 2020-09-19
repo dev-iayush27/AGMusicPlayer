@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SongsListViewController" customModule="AGMusicPlayer" customModuleProvider="target">
+            <connections>
+                <outlet property="searchBar" destination="HLK-bG-rKH" id="Fgb-ZZ-mAk"/>
+                <outlet property="tableViewSongs" destination="94O-o5-ncX" id="AzS-cA-cAh"/>
+                <outlet property="view" destination="Wpq-oO-uj8" id="pdr-To-YOM"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="Wpq-oO-uj8">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <searchBar contentMode="redraw" placeholder="Search songs" translatesAutoresizingMaskIntoConstraints="NO" id="HLK-bG-rKH">
+                    <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="DzG-JK-aPX"/>
+                    </constraints>
+                    <textInputTraits key="textInputTraits" spellCheckingType="no"/>
+                </searchBar>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="94O-o5-ncX">
+                    <rect key="frame" x="0.0" y="93" width="414" height="803"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="94O-o5-ncX" firstAttribute="leading" secondItem="kKN-mZ-wJ1" secondAttribute="leading" id="78p-uv-wvy"/>
+                <constraint firstAttribute="bottom" secondItem="94O-o5-ncX" secondAttribute="bottom" id="9w9-2u-DkB"/>
+                <constraint firstItem="94O-o5-ncX" firstAttribute="trailing" secondItem="kKN-mZ-wJ1" secondAttribute="trailing" id="FF0-CN-Kb9"/>
+                <constraint firstItem="HLK-bG-rKH" firstAttribute="top" secondItem="kKN-mZ-wJ1" secondAttribute="top" id="Icj-bN-Ufn"/>
+                <constraint firstItem="HLK-bG-rKH" firstAttribute="trailing" secondItem="kKN-mZ-wJ1" secondAttribute="trailing" id="Sy2-lq-CWe"/>
+                <constraint firstItem="HLK-bG-rKH" firstAttribute="leading" secondItem="kKN-mZ-wJ1" secondAttribute="leading" id="qee-Kb-1if"/>
+                <constraint firstItem="94O-o5-ncX" firstAttribute="top" secondItem="HLK-bG-rKH" secondAttribute="bottom" constant="5" id="zDm-JT-G1I"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="kKN-mZ-wJ1"/>
+            <point key="canvasLocation" x="139" y="154"/>
+        </view>
+    </objects>
+</document>

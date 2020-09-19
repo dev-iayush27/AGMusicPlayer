@@ -1,5 +1,5 @@
 //
-//  APIManagerTarget.swift
+//  NetworkTarget.swift
 //  AGMusicPlayer
 //
 //  Created by Ayush Gupta on 13/09/20.
@@ -9,12 +9,12 @@
 import Foundation
 import Moya
 
-enum APIManagerTarget {
-    case searchAPI(parameters: [String: Any])
+enum NetworkTarget {
+    case searchByQuery(parameters: [String: Any])
     case getAlbum(parameters: [String: Any])
 }
 
-extension APIManagerTarget: TargetType {
+extension NetworkTarget: NetworkTargetType {
     
     var sampleData: Data {
         return Data()
@@ -33,7 +33,7 @@ extension APIManagerTarget: TargetType {
     
     var path: String {
         switch self {
-        case .searchAPI:
+        case .searchByQuery:
             return Constants.ApiPathConstants.search
         case .getAlbum:
             return ""
@@ -42,7 +42,7 @@ extension APIManagerTarget: TargetType {
     
     var method: Moya.Method {
         switch self {
-        case .searchAPI:
+        case .searchByQuery:
             return .get
         case .getAlbum:
             return .get
@@ -51,7 +51,7 @@ extension APIManagerTarget: TargetType {
     
     var parameters: [String: Any]? {
         switch self {
-        case let .searchAPI(parameters):
+        case let .searchByQuery(parameters):
             return parameters
         case let .getAlbum(parameters):
             return parameters

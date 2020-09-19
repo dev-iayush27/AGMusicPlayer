@@ -1,11 +1,3 @@
-//
-//  SingleSongPlayerVC.swift
-//  AGMusicPlayer
-//
-//  Created by Ayush Gupta on 09/09/20.
-//  Copyright © 2020 Ayush Gupta. All rights reserved.
-//
-
 import UIKit
 import RxCocoa
 import RxSwift
@@ -13,8 +5,9 @@ import RxGesture
 import SDWebImage
 import AVFoundation
 
-class SingleSongPlayerVC: UIViewController {
+class SingleSongPlayerViewController: UIViewController {
     
+    @IBOutlet weak var baseView: UIView!
     @IBOutlet weak var songCoverImage: UIImageView!
     @IBOutlet weak var songTitleLabel: UILabel!
     @IBOutlet weak var songSubtitleLabel: UILabel!
@@ -26,10 +19,12 @@ class SingleSongPlayerVC: UIViewController {
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var downloadButton: UIButton!
     
+    var presenter: SingleSongPlayerPresenter?
+    var bundle: [String: Any] = [:]
+    var delegate: ViewControllerResultDelegate?
     private var disposeBag = DisposeBag()
-    internal var bundle: [String: Any] = [:]
-
     fileprivate var isLoading = BehaviorRelay(value: false)
+    
     internal var songData: ResultData?
     fileprivate var isTapOnPlay = false
     fileprivate var player = AVQueuePlayer()
@@ -37,28 +32,52 @@ class SingleSongPlayerVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if let delegate = bundle[Constants.BundleConstants.delegate] as? ViewControllerResultDelegate {
+            self.delegate = delegate
+        }
+        
         if let songData = bundle[Constants.BundleConstants.songData] as? ResultData {
             self.songData = songData
         }
         
         self.initRxBindings()
-        self.initSetUpData()
+        self.configureNavigationBar()
         self.initNavBar()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
+    /// Function to configure navigation bar
+    func configureNavigationBar() {
+        navigationController?.isNavigationBarHidden = false
+    }
+    
+    override func viewWillAppear(_: Bool) {
+        super.viewWillAppear(true)
+        initViews()
+        initData()
+    }
+    
+    /// Function to initialize view components
+    private func initViews() {
         self.songCoverImage.layer.cornerRadius = 16
         self.songCoverImage.clipsToBounds = true
+    }
+    
+    /// Function to call data or perform navigation action on viewWillAppear
+    private func initData() {
+        self.initSetUpData()
     }
     
     func initNavBar() {
         self.title = "Single Song Player"
     }
     
-    func initRxBindings() {
-        self.isLoading
+    /// Function to initialize Rx for views and variables
+    private func initRxBindings() {
+        isLoading
             .asObservable()
             .bind { status in
                 if status {
@@ -128,6 +147,15 @@ class SingleSongPlayerVC: UIViewController {
     deinit {
         self.pause()
     }
+}
+
+extension SingleSongPlayerViewController: ViewControllerResultDelegate {
+    func viewControllerResultBundle(bundle: [String : Any]) {
+        
+    }
+}
+
+extension SingleSongPlayerViewController {
 }
 
 extension TimeInterval {

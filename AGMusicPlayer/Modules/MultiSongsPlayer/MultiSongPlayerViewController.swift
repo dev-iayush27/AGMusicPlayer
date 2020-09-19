@@ -1,20 +1,13 @@
-//
-//  PlayerVC.swift
-//  AGMusicPlayer
-//
-//  Created by Ayush Gupta on 09/09/20.
-//  Copyright © 2020 Ayush Gupta. All rights reserved.
-//
-
+import Foundation
 import UIKit
 import RxCocoa
 import RxSwift
-import RxGesture
 import SDWebImage
 import AVFoundation
 
-class PlayerVC: UIViewController {
+class MultiSongPlayerViewController: UIViewController {
     
+    @IBOutlet weak var baseView: UIView!
     @IBOutlet weak var collectionViewSongs: UICollectionView!
     @IBOutlet weak var songTitleLabel: UILabel!
     @IBOutlet weak var songSubtitleLabel: UILabel!
@@ -25,9 +18,12 @@ class PlayerVC: UIViewController {
     @IBOutlet weak var playPauseButton: UIButton!
     @IBOutlet weak var nextButton: UIButton!
     
+    var presenter: MultiSongPlayerPresenter?
+    var bundle: [String: Any] = [:]
+    var delegate: ViewControllerResultDelegate?
     private var disposeBag = DisposeBag()
-    internal var bundle: [String: Any] = [:]
     fileprivate var isLoading = BehaviorRelay(value: false)
+    
     fileprivate var cellCurrentIndex = 0
     internal var arrSongs: [ResultData] = []
     fileprivate var isTapOnPlay = false
@@ -35,6 +31,10 @@ class PlayerVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if let delegate = bundle[Constants.BundleConstants.delegate] as? ViewControllerResultDelegate {
+            self.delegate = delegate
+        }
         
         if let arrSongs = bundle[Constants.BundleConstants.resultData] as? [ResultData] {
             self.arrSongs = arrSongs
@@ -44,6 +44,7 @@ class PlayerVC: UIViewController {
         self.initCollectionView()
         self.setUpPlayer()
         self.initNavBar()
+        self.configureNavigationBar()
     }
     
     func initNavBar() {
@@ -58,9 +59,32 @@ class PlayerVC: UIViewController {
         self.collectionViewSongs.reloadData()
     }
     
-    // Function to initialize Rx for views and variables
-    func initRxBindings() {
-        self.isLoading
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
+    /// Function to configure navigation bar
+    func configureNavigationBar() {
+        navigationController?.isNavigationBarHidden = true
+    }
+    
+    override func viewWillAppear(_: Bool) {
+        super.viewWillAppear(true)
+        initViews()
+        initData()
+    }
+    
+    /// Function to initialize view components
+    private func initViews() {
+    }
+    
+    /// Function to call data or perform navigation action on viewWillAppear
+    private func initData() {
+    }
+    
+    /// Function to initialize Rx for views and variables
+    private func initRxBindings() {
+        isLoading
             .asObservable()
             .bind { status in
                 if status {
@@ -176,7 +200,7 @@ class PlayerVC: UIViewController {
     }
 }
 
-extension PlayerVC: UICollectionViewDataSource, UICollectionViewDelegate {
+extension MultiSongPlayerViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
@@ -195,9 +219,18 @@ extension PlayerVC: UICollectionViewDataSource, UICollectionViewDelegate {
     }
 }
 
-extension PlayerVC: UICollectionViewDelegateFlowLayout {
+extension MultiSongPlayerViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout _: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: UIScreen.main.bounds.width, height: collectionView.bounds.height)
     }
+}
+
+extension MultiSongPlayerViewController: ViewControllerResultDelegate {
+    func viewControllerResultBundle(bundle: [String : Any]) {
+        
+    }
+}
+
+extension MultiSongPlayerViewController {
 }

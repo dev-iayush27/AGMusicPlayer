@@ -1,5 +1,5 @@
 //
-//  RootNavigator.swift
+//  RootRouter.swift
 //  AGMusicPlayer
 //
 //  Created by Ayush Gupta on 12/09/20.
@@ -10,12 +10,13 @@ import Foundation
 import UIKit
 
 enum Destination {
+    case splash
     case songsList
     case singleSongPlayer
     case multiSongPlayer
 }
 
-public class RootNavigator {
+public class RootRouter {
     public init() {}
     
     func showRootScreen() {
@@ -54,12 +55,14 @@ public class RootNavigator {
     
     private func makeViewController(for destination: Destination, bundle: [String: Any]) -> UIViewController {
         switch destination {
+        case .splash:
+            return SplashRouter.assembleModule(bundle: bundle)
         case .songsList:
-            return SongsListNavigator.songsListModule(bundle: bundle)
+            return SongsListRouter.assembleModule(bundle: bundle)
         case .singleSongPlayer:
-            return SingleSongPlayerNavigator.singleSongPlayerModule(bundle: bundle)
+            return SingleSongPlayerRouter.assembleModule(bundle: bundle)
         case .multiSongPlayer:
-            return PlayerNavigator.playerModule(bundle: bundle)
+            return MultiSongPlayerRouter.assembleModule(bundle: bundle)
         }
     }
 }
