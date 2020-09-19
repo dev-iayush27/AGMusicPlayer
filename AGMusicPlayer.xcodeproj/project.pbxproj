@@ -42,6 +42,7 @@
 		4881A25E2508226A00AEB390 /* SongsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4881A25D2508226A00AEB390 /* SongsResponse.swift */; };
 		4881A26025082C8500AEB390 /* HTTPFacade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4881A25F25082C8500AEB390 /* HTTPFacade.swift */; };
 		48A6BAE225167A05002A8A06 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A6BAE125167A05002A8A06 /* UIViewController+Extension.swift */; };
+		48A6BAE525168ECF002A8A06 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A6BAE425168ECF002A8A06 /* AudioManager.swift */; };
 		48A70C41250C0B90005E5969 /* APICacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A70C40250C0B90005E5969 /* APICacheManager.swift */; };
 		48A70C49250C25BC005E5969 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A70C44250C25BC005E5969 /* NetworkError.swift */; };
 		48A70C4F250C26B4005E5969 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A70C4E250C26B4005E5969 /* Constants.swift */; };
@@ -89,6 +90,7 @@
 		4881A25D2508226A00AEB390 /* SongsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongsResponse.swift; sourceTree = "<group>"; };
 		4881A25F25082C8500AEB390 /* HTTPFacade.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPFacade.swift; sourceTree = "<group>"; };
 		48A6BAE125167A05002A8A06 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		48A6BAE425168ECF002A8A06 /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
 		48A70C40250C0B90005E5969 /* APICacheManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APICacheManager.swift; sourceTree = "<group>"; };
 		48A70C44250C25BC005E5969 /* NetworkError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		48A70C4E250C26B4005E5969 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -279,6 +281,14 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		48A6BAE325168EAF002A8A06 /* AudioManager */ = {
+			isa = PBXGroup;
+			children = (
+				48A6BAE425168ECF002A8A06 /* AudioManager.swift */,
+			);
+			path = AudioManager;
+			sourceTree = "<group>";
+		};
 		48A70C42250C0BA1005E5969 /* APICache */ = {
 			isa = PBXGroup;
 			children = (
@@ -290,6 +300,7 @@
 		48A70C50250C26BE005E5969 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				48A6BAE325168EAF002A8A06 /* AudioManager */,
 				48A70C5B250C3A8C005E5969 /* Extension */,
 				48A70C5A250C3A7E005E5969 /* Constants */,
 			);
@@ -462,6 +473,7 @@
 				4881A25B2508202100AEB390 /* SongCoverPhotoCVCell.swift in Sources */,
 				487EC24625155C2700093BC7 /* MultiSongPlayerRouter.swift in Sources */,
 				482C373E251542800063E367 /* MoyaProviderFactory.swift in Sources */,
+				48A6BAE525168ECF002A8A06 /* AudioManager.swift in Sources */,
 				487EC23F25155C1200093BC7 /* SingleSongPlayerService.swift in Sources */,
 				48B3015F250D65F200C3A05A /* NetworkTarget.swift in Sources */,
 				487EC23B25155C1200093BC7 /* SingleSongPlayerPresenter.swift in Sources */,

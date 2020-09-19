@@ -3,7 +3,6 @@ import RxCocoa
 import RxSwift
 import RxGesture
 import SDWebImage
-import AVFoundation
 
 class SingleSongPlayerViewController: UIViewController {
     
@@ -11,7 +10,6 @@ class SingleSongPlayerViewController: UIViewController {
     @IBOutlet weak var songCoverImage: UIImageView!
     @IBOutlet weak var songTitleLabel: UILabel!
     @IBOutlet weak var songSubtitleLabel: UILabel!
-    @IBOutlet weak var songProgressBar: UISlider!
     @IBOutlet weak var progressBar: UIProgressView!
     @IBOutlet weak var songCompletedTimeLabel: UILabel!
     @IBOutlet weak var songTotalTimeLabel: UILabel!
@@ -25,10 +23,10 @@ class SingleSongPlayerViewController: UIViewController {
     var delegate: ViewControllerResultDelegate?
     private var disposeBag = DisposeBag()
     fileprivate var isLoading = BehaviorRelay(value: false)
+    fileprivate var audioManager = AudioManager.shared
     
     internal var songData: ResultData?
     fileprivate var isTapOnPlay = false
-    fileprivate var audioPlayer: AVAudioPlayer!
     fileprivate var timer: Timer? = nil {
         willSet {
             self.timer?.invalidate()
@@ -52,9 +50,9 @@ class SingleSongPlayerViewController: UIViewController {
     func initSetUp() {
         self.initRxBindings()
         self.configureNavigationBar()
-        self.initNavBar()
         self.initSetUpData()
-        self.playWithUrl()
+        self.setUpPlayer()
+        self.title = "Single Song Player"
         self.progressBar.progress = 0.0
         self.songCompletedTimeLabel.text = "00:00"
     }
@@ -83,10 +81,6 @@ class SingleSongPlayerViewController: UIViewController {
     /// Function to call data or perform navigation action on viewWillAppear
     private func initData() {
         
-    }
-    
-    func initNavBar() {
-        self.title = "Single Song Player"
     }
     
     /// Function to initialize Rx for views and variables
@@ -135,7 +129,7 @@ class SingleSongPlayerViewController: UIViewController {
     }
     
     deinit {
-        self.audioPlayer.stop()
+        self.audioManager.stopAudio()
     }
 }
 
@@ -145,27 +139,47 @@ extension SingleSongPlayerViewController: ViewControllerResultDelegate {
     }
 }
 
-extension SingleSongPlayerViewController: AVAudioPlayerDelegate {
+// MARK :-  Functions related to audio player...
+extension SingleSongPlayerViewController {
     
+    // A function to set up the player, prepare to play initially...
+    func setUpPlayer() {
+        if let url = self.songData?.previewUrl {
+            self.playPauseButton.isEnabled = false
+            self.audioManager.prepareToPlayAudio(audioUrl: url) { (isDone) in
+                if isDone {
+                    // After prepare to play the audio, do some setup...
+                    DispatchQueue.main.async {
+                        self.playPauseButton.isEnabled = true
+                        self.songTotalTimeLabel.text = self.getTime(time: self.audioManager.getTotalDuration())
+                    }
+                }
+            }
+        }
+    }
+    
+    // A function to play the audio...
     func playAudio() {
         self.isTapOnPlay = true
         self.playPauseButton.setImage(UIImage(named: "pause"), for: .normal)
         self.startProgressTimer()
-        self.audioPlayer.play()
+        self.audioManager.playAudio()
     }
     
+    // A function to pause the audio...
     func pauseAudio() {
         self.isTapOnPlay = false
         self.playPauseButton.setImage(UIImage(named: "play"), for: .normal)
         self.stopProgressTimer()
-        self.audioPlayer.pause()
+        self.audioManager.pauseAudio()
     }
     
+    // A function to reset the player...
     func resetPlayer() {
         self.isTapOnPlay = false
         self.stopProgressTimer()
-        self.audioPlayer.stop()
-        self.playWithUrl()
+        self.audioManager.stopAudio()
+        self.setUpPlayer()
         DispatchQueue.main.async {
             self.playPauseButton.setImage(UIImage(named: "play"), for: .normal)
             self.progressBar.progress = 0.0
@@ -173,43 +187,10 @@ extension SingleSongPlayerViewController: AVAudioPlayerDelegate {
         }
     }
     
-    func playWithUrl() {
-        guard let previewUrl = self.songData?.previewUrl else {
-            AppDelegate.showToast(message: "Preview URL not found.", isLong: true)
-            self.playPauseButton.setImage(UIImage(named: "play"), for: .normal)
-            self.audioPlayer.stop()
-            return
-        }
-        self.downloadFileFromURL(url: URL(string: previewUrl)!)
-    }
-    
-    func downloadFileFromURL(url: URL) {
-        var downloadTask: URLSessionDownloadTask
-        downloadTask = URLSession.shared.downloadTask(with: url) { (url, response, error) in
-            self.play(url: url!)
-        }
-        downloadTask.resume()
-    }
-    
-    func play(url: URL) {
-        do {
-            audioPlayer = try AVAudioPlayer(contentsOf: url as URL)
-            print("Total Time: ", self.getTime(time: audioPlayer.duration))
-            DispatchQueue.main.async {
-                self.songTotalTimeLabel.text = self.getTime(time: self.audioPlayer.duration)
-            }
-            audioPlayer.prepareToPlay()
-            audioPlayer.volume = 1.0
-        } catch let error as NSError {
-            print(error.localizedDescription)
-        } catch {
-            print("AVAudioPlayer init failed")
-        }
-    }
-    
+    // A function to update the completed time label and progress bar...
     @objc func updateCurrentDuration() {
-        let currentTime = (self.audioPlayer.currentTime + 1.0)
-        let totalTime = self.audioPlayer.duration
+        let currentTime = (self.audioManager.audioPlayer.currentTime + 1.0)
+        let totalTime = self.audioManager.audioPlayer.duration
         print("Current Time: ", self.getTime(time: currentTime))
         DispatchQueue.main.async {
             self.songCompletedTimeLabel.text = self.getTime(time: currentTime)
@@ -220,10 +201,12 @@ extension SingleSongPlayerViewController: AVAudioPlayerDelegate {
         }
     }
     
+    // A function to start timer progress...
     func startProgressTimer() {
         self.timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.updateCurrentDuration), userInfo: nil, repeats: true)
     }
     
+    // A function to stop timer prgress...
     func stopProgressTimer() {
         self.timer?.invalidate()
         self.timer = nil
