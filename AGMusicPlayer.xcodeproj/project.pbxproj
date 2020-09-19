@@ -41,6 +41,7 @@
 		4881A25C2508202100AEB390 /* SongCoverPhotoCVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4881A25A2508202100AEB390 /* SongCoverPhotoCVCell.xib */; };
 		4881A25E2508226A00AEB390 /* SongsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4881A25D2508226A00AEB390 /* SongsResponse.swift */; };
 		4881A26025082C8500AEB390 /* HTTPFacade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4881A25F25082C8500AEB390 /* HTTPFacade.swift */; };
+		48A6BAE225167A05002A8A06 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A6BAE125167A05002A8A06 /* UIViewController+Extension.swift */; };
 		48A70C41250C0B90005E5969 /* APICacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A70C40250C0B90005E5969 /* APICacheManager.swift */; };
 		48A70C49250C25BC005E5969 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A70C44250C25BC005E5969 /* NetworkError.swift */; };
 		48A70C4F250C26B4005E5969 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A70C4E250C26B4005E5969 /* Constants.swift */; };
@@ -87,6 +88,7 @@
 		4881A25A2508202100AEB390 /* SongCoverPhotoCVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SongCoverPhotoCVCell.xib; sourceTree = "<group>"; };
 		4881A25D2508226A00AEB390 /* SongsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongsResponse.swift; sourceTree = "<group>"; };
 		4881A25F25082C8500AEB390 /* HTTPFacade.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPFacade.swift; sourceTree = "<group>"; };
+		48A6BAE125167A05002A8A06 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		48A70C40250C0B90005E5969 /* APICacheManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APICacheManager.swift; sourceTree = "<group>"; };
 		48A70C44250C25BC005E5969 /* NetworkError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		48A70C4E250C26B4005E5969 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -316,6 +318,7 @@
 			children = (
 				4881A25625081B7100AEB390 /* UIApplication+Extension.swift */,
 				48569C6525162A31007623B0 /* TimeIntervel+Extension.swift */,
+				48A6BAE125167A05002A8A06 /* UIViewController+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -451,6 +454,7 @@
 				487EC23D25155C1200093BC7 /* SingleSongPlayerViewController.swift in Sources */,
 				4881A26025082C8500AEB390 /* HTTPFacade.swift in Sources */,
 				4881A23E2508105100AEB390 /* AppDelegate.swift in Sources */,
+				48A6BAE225167A05002A8A06 /* UIViewController+Extension.swift in Sources */,
 				4881A25E2508226A00AEB390 /* SongsResponse.swift in Sources */,
 				487EC24725155C2700093BC7 /* MultiSongPlayerViewController.swift in Sources */,
 				48A70C4F250C26B4005E5969 /* Constants.swift in Sources */,

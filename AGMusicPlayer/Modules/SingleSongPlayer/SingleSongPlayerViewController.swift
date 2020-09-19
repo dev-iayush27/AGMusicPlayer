@@ -12,6 +12,7 @@ class SingleSongPlayerViewController: UIViewController {
     @IBOutlet weak var songTitleLabel: UILabel!
     @IBOutlet weak var songSubtitleLabel: UILabel!
     @IBOutlet weak var songProgressBar: UISlider!
+    @IBOutlet weak var progressBar: UIProgressView!
     @IBOutlet weak var songCompletedTimeLabel: UILabel!
     @IBOutlet weak var songTotalTimeLabel: UILabel!
     @IBOutlet weak var previousButton: UIButton!
@@ -27,7 +28,12 @@ class SingleSongPlayerViewController: UIViewController {
     
     internal var songData: ResultData?
     fileprivate var isTapOnPlay = false
-    fileprivate var player = AVQueuePlayer()
+    fileprivate var audioPlayer: AVAudioPlayer!
+    fileprivate var timer: Timer? = nil {
+        willSet {
+            self.timer?.invalidate()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,6 +53,10 @@ class SingleSongPlayerViewController: UIViewController {
         self.initRxBindings()
         self.configureNavigationBar()
         self.initNavBar()
+        self.initSetUpData()
+        self.playWithUrl()
+        self.progressBar.progress = 0.0
+        self.songCompletedTimeLabel.text = "00:00"
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -72,7 +82,7 @@ class SingleSongPlayerViewController: UIViewController {
     
     /// Function to call data or perform navigation action on viewWillAppear
     private func initData() {
-        self.initSetUpData()
+        
     }
     
     func initNavBar() {
@@ -106,24 +116,13 @@ class SingleSongPlayerViewController: UIViewController {
         
         self.playPauseButton.rx.tap
             .subscribe(onNext: { [weak self] in
-                self?.isTapOnPlay = !(self?.isTapOnPlay ?? false)
-                if self?.isTapOnPlay == true {
-                    self?.play()
+                if self?.isTapOnPlay == false {
+                    self?.playAudio()
                 } else {
-                    self?.pause()
+                    self?.pauseAudio()
                 }
             })
             .disposed(by: self.disposeBag)
-    }
-    
-    func play() {
-        self.playPauseButton.setImage(UIImage(named: "pause"), for: .normal)
-        self.playUrl()
-    }
-    
-    func pause() {
-        self.playPauseButton.setImage(UIImage(named: "play"), for: .normal)
-        self.player.pause()
     }
     
     func initSetUpData() {
@@ -132,24 +131,11 @@ class SingleSongPlayerViewController: UIViewController {
         }
         self.songTitleLabel.text = self.songData?.trackName ?? ""
         self.songSubtitleLabel.text = self.songData?.artistName ?? ""
-        self.songTotalTimeLabel.text = self.songData?.trackTimeMillis?.msToSeconds.minuteSecondMS
-    }
-    
-    func playUrl() {
-        guard let previewUrl = self.songData?.previewUrl else {
-            AppDelegate.showToast(message: "Preview URL not found.", isLong: true)
-            self.playPauseButton.setImage(UIImage(named: "play"), for: .normal)
-            self.player.pause()
-            return
-        }
-        let url = URL(string: previewUrl)
-        self.player.removeAllItems()
-        self.player.insert(AVPlayerItem(url: url!), after: nil)
-        self.player.play()
+        self.songTotalTimeLabel.text = "00:00"
     }
     
     deinit {
-        self.pause()
+        self.audioPlayer.stop()
     }
 }
 
@@ -159,5 +145,87 @@ extension SingleSongPlayerViewController: ViewControllerResultDelegate {
     }
 }
 
-extension SingleSongPlayerViewController {
+extension SingleSongPlayerViewController: AVAudioPlayerDelegate {
+    
+    func playAudio() {
+        self.isTapOnPlay = true
+        self.playPauseButton.setImage(UIImage(named: "pause"), for: .normal)
+        self.startProgressTimer()
+        self.audioPlayer.play()
+    }
+    
+    func pauseAudio() {
+        self.isTapOnPlay = false
+        self.playPauseButton.setImage(UIImage(named: "play"), for: .normal)
+        self.stopProgressTimer()
+        self.audioPlayer.pause()
+    }
+    
+    func resetPlayer() {
+        self.isTapOnPlay = false
+        self.stopProgressTimer()
+        self.audioPlayer.stop()
+        self.playWithUrl()
+        DispatchQueue.main.async {
+            self.playPauseButton.setImage(UIImage(named: "play"), for: .normal)
+            self.progressBar.progress = 0.0
+            self.songCompletedTimeLabel.text = "00:00"
+        }
+    }
+    
+    func playWithUrl() {
+        guard let previewUrl = self.songData?.previewUrl else {
+            AppDelegate.showToast(message: "Preview URL not found.", isLong: true)
+            self.playPauseButton.setImage(UIImage(named: "play"), for: .normal)
+            self.audioPlayer.stop()
+            return
+        }
+        self.downloadFileFromURL(url: URL(string: previewUrl)!)
+    }
+    
+    func downloadFileFromURL(url: URL) {
+        var downloadTask: URLSessionDownloadTask
+        downloadTask = URLSession.shared.downloadTask(with: url) { (url, response, error) in
+            self.play(url: url!)
+        }
+        downloadTask.resume()
+    }
+    
+    func play(url: URL) {
+        do {
+            audioPlayer = try AVAudioPlayer(contentsOf: url as URL)
+            print("Total Time: ", self.getTime(time: audioPlayer.duration))
+            DispatchQueue.main.async {
+                self.songTotalTimeLabel.text = self.getTime(time: self.audioPlayer.duration)
+            }
+            audioPlayer.prepareToPlay()
+            audioPlayer.volume = 1.0
+        } catch let error as NSError {
+            print(error.localizedDescription)
+        } catch {
+            print("AVAudioPlayer init failed")
+        }
+    }
+    
+    @objc func updateCurrentDuration() {
+        let currentTime = (self.audioPlayer.currentTime + 1.0)
+        let totalTime = self.audioPlayer.duration
+        print("Current Time: ", self.getTime(time: currentTime))
+        DispatchQueue.main.async {
+            self.songCompletedTimeLabel.text = self.getTime(time: currentTime)
+            self.progressBar.progress = Float(currentTime/totalTime)
+        }
+        if totalTime <= currentTime {
+            self.resetPlayer()
+        }
+    }
+    
+    func startProgressTimer() {
+        self.timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.updateCurrentDuration), userInfo: nil, repeats: true)
+    }
+    
+    func stopProgressTimer() {
+        self.timer?.invalidate()
+        self.timer = nil
+    }
 }

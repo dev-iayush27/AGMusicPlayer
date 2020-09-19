@@ -15,6 +15,7 @@
                 <outlet property="nextButton" destination="A6s-uZ-qV9" id="KBX-DG-hXi"/>
                 <outlet property="playPauseButton" destination="Yzy-UO-USf" id="AaZ-2a-ks6"/>
                 <outlet property="previousButton" destination="11Z-Yq-caR" id="cR3-Gl-bD9"/>
+                <outlet property="progressBar" destination="ZaO-kv-lL8" id="mzI-fE-CiJ"/>
                 <outlet property="songCompletedTimeLabel" destination="QGC-ei-mKk" id="sMV-4H-o5y"/>
                 <outlet property="songCoverImage" destination="YOC-Er-dWf" id="wHS-4m-Kkm"/>
                 <outlet property="songProgressBar" destination="LGv-Db-7nP" id="PQW-Y7-STv"/>
@@ -95,10 +96,16 @@
                             <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.30000001192092896" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="LGv-Db-7nP">
+                        <slider hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.30000001192092896" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="LGv-Db-7nP">
                             <rect key="frame" x="28" y="254" width="358" height="31"/>
                             <color key="minimumTrackTintColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </slider>
+                        <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ZaO-kv-lL8">
+                            <rect key="frame" x="30" y="266.5" width="354" height="5"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="5" id="Fn9-2o-ls4"/>
+                            </constraints>
+                        </progressView>
                     </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                     <constraints>
@@ -111,6 +118,7 @@
                         <constraint firstItem="Yzy-UO-USf" firstAttribute="leading" secondItem="11Z-Yq-caR" secondAttribute="trailing" constant="50" id="DiE-nt-GpP"/>
                         <constraint firstItem="Yzy-UO-USf" firstAttribute="top" secondItem="LGv-Db-7nP" secondAttribute="bottom" constant="50" id="Hkx-R3-qCO"/>
                         <constraint firstItem="Yzy-UO-USf" firstAttribute="centerX" secondItem="onx-Zc-sWm" secondAttribute="centerX" id="Lju-Qq-NWA"/>
+                        <constraint firstItem="ZaO-kv-lL8" firstAttribute="leading" secondItem="onx-Zc-sWm" secondAttribute="leading" constant="30" id="OED-gC-irf"/>
                         <constraint firstItem="fZR-h3-bb9" firstAttribute="top" secondItem="LGv-Db-7nP" secondAttribute="bottom" id="OaS-rM-LKm"/>
                         <constraint firstItem="C6N-Hd-PgP" firstAttribute="leading" secondItem="QcR-ET-hbt" secondAttribute="trailing" constant="10" id="P4e-pe-5mO"/>
                         <constraint firstAttribute="trailing" secondItem="C6N-Hd-PgP" secondAttribute="trailing" constant="30" id="Pdc-qx-j0T"/>
@@ -120,12 +128,15 @@
                         <constraint firstItem="C6N-Hd-PgP" firstAttribute="leading" secondItem="QcR-ET-hbt" secondAttribute="trailing" constant="10" id="c0h-wr-n0O"/>
                         <constraint firstItem="VIG-37-2N5" firstAttribute="leading" secondItem="onx-Zc-sWm" secondAttribute="leading" constant="30" id="d49-bn-PIE"/>
                         <constraint firstItem="YOC-Er-dWf" firstAttribute="centerX" secondItem="onx-Zc-sWm" secondAttribute="centerX" id="fJQ-qh-0CR"/>
+                        <constraint firstAttribute="trailing" secondItem="ZaO-kv-lL8" secondAttribute="trailing" constant="30" id="gOM-Qo-mgE"/>
                         <constraint firstAttribute="height" constant="394" id="j5k-u8-thj"/>
                         <constraint firstItem="QcR-ET-hbt" firstAttribute="top" secondItem="YOC-Er-dWf" secondAttribute="bottom" constant="60" id="l7C-cb-dLm"/>
+                        <constraint firstItem="fZR-h3-bb9" firstAttribute="top" secondItem="ZaO-kv-lL8" secondAttribute="bottom" constant="12.5" id="lMd-ik-FEc"/>
                         <constraint firstItem="A6s-uZ-qV9" firstAttribute="centerY" secondItem="Yzy-UO-USf" secondAttribute="centerY" id="oDV-8V-XO5"/>
                         <constraint firstItem="C6N-Hd-PgP" firstAttribute="centerY" secondItem="QcR-ET-hbt" secondAttribute="centerY" id="rHT-Aa-Eb2"/>
                         <constraint firstAttribute="trailing" secondItem="fZR-h3-bb9" secondAttribute="trailing" constant="30" id="smL-Qh-Ht2"/>
                         <constraint firstItem="QcR-ET-hbt" firstAttribute="leading" secondItem="onx-Zc-sWm" secondAttribute="leading" constant="30" id="wJt-Ho-TUr"/>
+                        <constraint firstItem="ZaO-kv-lL8" firstAttribute="top" secondItem="VIG-37-2N5" secondAttribute="bottom" constant="42.5" id="wLR-O7-VxS"/>
                         <constraint firstItem="A6s-uZ-qV9" firstAttribute="leading" secondItem="Yzy-UO-USf" secondAttribute="trailing" constant="50" id="wr0-F6-Z3R"/>
                     </constraints>
                 </view>
