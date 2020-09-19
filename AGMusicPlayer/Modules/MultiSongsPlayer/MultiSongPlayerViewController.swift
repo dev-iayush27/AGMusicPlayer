@@ -65,7 +65,7 @@ class MultiSongPlayerViewController: UIViewController {
     
     /// Function to configure navigation bar
     func configureNavigationBar() {
-        navigationController?.isNavigationBarHidden = true
+        navigationController?.isNavigationBarHidden = false
     }
     
     override func viewWillAppear(_: Bool) {
