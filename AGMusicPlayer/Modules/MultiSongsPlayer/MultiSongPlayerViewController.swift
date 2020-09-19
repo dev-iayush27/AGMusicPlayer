@@ -40,6 +40,10 @@ class MultiSongPlayerViewController: UIViewController {
             self.arrSongs = arrSongs
         }
         
+        self.initSetUp()
+    }
+    
+    func initSetUp() {
         self.initRxBindings()
         self.initCollectionView()
         self.setUpPlayer()

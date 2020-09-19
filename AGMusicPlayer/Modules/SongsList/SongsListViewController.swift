@@ -62,10 +62,14 @@ class SongsListViewController: UIViewController {
     }
     
     @objc private func handleSongs() {
-        let bundle = [
-            Constants.BundleConstants.resultData: self.arrSongs
-        ]
-        self.presenter?.navigateTo(destination: Destination.multiSongPlayer, bundle: bundle)
+        if self.arrSongs.count > 0 {
+            let bundle = [
+                Constants.BundleConstants.resultData: self.arrSongs
+            ]
+            self.presenter?.navigateTo(destination: Destination.multiSongPlayer, bundle: bundle)
+        } else {
+            AppDelegate.showToast(message: "Songs are not available. Please search songs.", isLong: true)
+        }
     }
     
     /// Function to initialize Rx for views and variables

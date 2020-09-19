@@ -40,6 +40,10 @@ class SingleSongPlayerViewController: UIViewController {
             self.songData = songData
         }
         
+        self.initSetUp()
+    }
+    
+    func initSetUp() {
         self.initRxBindings()
         self.configureNavigationBar()
         self.initNavBar()
@@ -156,22 +160,4 @@ extension SingleSongPlayerViewController: ViewControllerResultDelegate {
 }
 
 extension SingleSongPlayerViewController {
-}
-
-extension TimeInterval {
-    var minuteSecondMS: String {
-        return String(format:"%d:%02d", minute, second)
-    }
-    var minute: Int {
-        return Int((self/60).truncatingRemainder(dividingBy: 60))
-    }
-    var second: Int {
-        return Int(truncatingRemainder(dividingBy: 60))
-    }
-}
-
-extension Int {
-    var msToSeconds: Double {
-        return Double(self) / 1000
-    }
 }

@@ -10,6 +10,7 @@
 		482C373E251542800063E367 /* MoyaProviderFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 482C373D251542800063E367 /* MoyaProviderFactory.swift */; };
 		483638EA25094D15003CB440 /* SongsTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 483638E825094D15003CB440 /* SongsTVCell.swift */; };
 		483638EB25094D15003CB440 /* SongsTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 483638E925094D15003CB440 /* SongsTVCell.xib */; };
+		48569C6625162A31007623B0 /* TimeIntervel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48569C6525162A31007623B0 /* TimeIntervel+Extension.swift */; };
 		487EC21E2515462100093BC7 /* NetworkTargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487EC21D2515462100093BC7 /* NetworkTargetType.swift */; };
 		487EC2242515487B00093BC7 /* SongsListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487EC21F2515487B00093BC7 /* SongsListPresenter.swift */; };
 		487EC2252515487B00093BC7 /* SongsListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487EC2202515487B00093BC7 /* SongsListRouter.swift */; };
@@ -53,6 +54,7 @@
 		482C373D251542800063E367 /* MoyaProviderFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoyaProviderFactory.swift; sourceTree = "<group>"; };
 		483638E825094D15003CB440 /* SongsTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongsTVCell.swift; sourceTree = "<group>"; };
 		483638E925094D15003CB440 /* SongsTVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SongsTVCell.xib; sourceTree = "<group>"; };
+		48569C6525162A31007623B0 /* TimeIntervel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeIntervel+Extension.swift"; sourceTree = "<group>"; };
 		487EC21D2515462100093BC7 /* NetworkTargetType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkTargetType.swift; sourceTree = "<group>"; };
 		487EC21F2515487B00093BC7 /* SongsListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongsListPresenter.swift; sourceTree = "<group>"; };
 		487EC2202515487B00093BC7 /* SongsListRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongsListRouter.swift; sourceTree = "<group>"; };
@@ -130,7 +132,7 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
-		483638EC25094E1D003CB440 /* SingleSongPlay */ = {
+		483638EC25094E1D003CB440 /* SingleSongPlayer */ = {
 			isa = PBXGroup;
 			children = (
 				487EC23625155C1200093BC7 /* SingleSongPlayerPresenter.swift */,
@@ -139,7 +141,7 @@
 				487EC23825155C1200093BC7 /* SingleSongPlayerViewController.swift */,
 				487EC23925155C1200093BC7 /* SingleSongPlayerViewController.xib */,
 			);
-			path = SingleSongPlay;
+			path = SingleSongPlayer;
 			sourceTree = "<group>";
 		};
 		483638F125094E58003CB440 /* Application */ = {
@@ -204,7 +206,7 @@
 				483638F625094ED2003CB440 /* LaunchScreen */,
 				487EC22B25154C2700093BC7 /* Splash */,
 				483638E625094CEE003CB440 /* SongsList */,
-				483638EC25094E1D003CB440 /* SingleSongPlay */,
+				483638EC25094E1D003CB440 /* SingleSongPlayer */,
 				4881A2552508199200AEB390 /* MultiSongsPlayer */,
 			);
 			path = Modules;
@@ -313,6 +315,7 @@
 			isa = PBXGroup;
 			children = (
 				4881A25625081B7100AEB390 /* UIApplication+Extension.swift */,
+				48569C6525162A31007623B0 /* TimeIntervel+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -459,6 +462,7 @@
 				48B3015F250D65F200C3A05A /* NetworkTarget.swift in Sources */,
 				487EC23B25155C1200093BC7 /* SingleSongPlayerPresenter.swift in Sources */,
 				487EC24525155C2700093BC7 /* MultiSongPlayerPresenter.swift in Sources */,
+				48569C6625162A31007623B0 /* TimeIntervel+Extension.swift in Sources */,
 				487EC23325154C4500093BC7 /* SplashViewController.swift in Sources */,
 				487EC2242515487B00093BC7 /* SongsListPresenter.swift in Sources */,
 				48A70C49250C25BC005E5969 /* NetworkError.swift in Sources */,
