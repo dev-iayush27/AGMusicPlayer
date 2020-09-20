@@ -146,12 +146,12 @@ extension SingleSongPlayerViewController {
     func setUpPlayer() {
         if let url = self.songData?.previewUrl {
             self.playPauseButton.isEnabled = false
-            self.audioManager.prepareToPlayAudio(audioUrl: url) { (isDone) in
+            self.audioManager.prepareToPlayAudio(audioUrl: url) { [weak self] (isDone) in
                 if isDone {
                     // After prepare to play the audio, do some setup...
                     DispatchQueue.main.async {
-                        self.playPauseButton.isEnabled = true
-                        self.songTotalTimeLabel.text = self.getTime(time: self.audioManager.getTotalDuration())
+                        self?.playPauseButton.isEnabled = true
+                        self?.songTotalTimeLabel.text = self?.getTime(time: (self?.audioManager.getTotalDuration())!)
                     }
                 }
             }
