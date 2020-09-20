@@ -39,7 +39,7 @@ class SplashViewController: UIViewController {
     
     /// Function to initialize view components
     private func initViews() {
-        DispatchQueue.main.asyncAfter(deadline: .now()+1) {
+        DispatchQueue.main.asyncAfter(deadline: .now()+3) {
             self.presenter?.navigateTo(destination: Destination.songsList, bundle: [:])
         }
     }

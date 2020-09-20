@@ -11,6 +11,7 @@ class SingleSongPlayerViewController: UIViewController {
     @IBOutlet weak var songTitleLabel: UILabel!
     @IBOutlet weak var songSubtitleLabel: UILabel!
     @IBOutlet weak var progressBar: UIProgressView!
+    @IBOutlet weak var slider: UISlider!
     @IBOutlet weak var songCompletedTimeLabel: UILabel!
     @IBOutlet weak var songTotalTimeLabel: UILabel!
     @IBOutlet weak var previousButton: UIButton!
@@ -52,9 +53,10 @@ class SingleSongPlayerViewController: UIViewController {
         self.configureNavigationBar()
         self.initSetUpData()
         self.setUpPlayer()
-        self.title = "Single Song Player"
         self.progressBar.progress = 0.0
+        self.slider.value = 0
         self.songCompletedTimeLabel.text = "00:00"
+        self.progressBar.isHidden = true
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -95,28 +97,6 @@ class SingleSongPlayerViewController: UIViewController {
                 }
         }
         .disposed(by: disposeBag)
-        
-        self.previousButton.rx.tap
-            .subscribe(onNext: { _ in
-                
-            })
-            .disposed(by: self.disposeBag)
-        
-        self.nextButton.rx.tap
-            .subscribe(onNext: { _ in
-                
-            })
-            .disposed(by: self.disposeBag)
-        
-        self.playPauseButton.rx.tap
-            .subscribe(onNext: { [weak self] in
-                if self?.isTapOnPlay == false {
-                    self?.playAudio()
-                } else {
-                    self?.pauseAudio()
-                }
-            })
-            .disposed(by: self.disposeBag)
     }
     
     func initSetUpData() {
@@ -126,6 +106,53 @@ class SingleSongPlayerViewController: UIViewController {
         self.songTitleLabel.text = self.songData?.trackName ?? ""
         self.songSubtitleLabel.text = self.songData?.artistName ?? ""
         self.songTotalTimeLabel.text = "00:00"
+    }
+    
+    @IBAction func downloadAction(_ sender: UIButton) {
+        
+    }
+    
+    // do backward the audio with 5 sec...
+    @IBAction func previousAction(_ sender: UIButton) {
+        var currentTime = (self.audioManager.audioPlayer.currentTime - 5.0)
+        if currentTime < 0 {
+            currentTime = 0
+            self.songCompletedTimeLabel.text = self.getTime(time: currentTime)
+            self.audioManager.audioPlayer.currentTime = TimeInterval(currentTime)
+            self.slider.value = Float(currentTime)
+        } else {
+            self.songCompletedTimeLabel.text = self.getTime(time: currentTime)
+            self.audioManager.audioPlayer.currentTime = TimeInterval(currentTime)
+            self.slider.value = Float(currentTime)
+        }
+    }
+    
+    // Fast forward audio with 5 sec...
+    @IBAction func nextAction(_ sender: UIButton) {
+        let currentTime = (self.audioManager.audioPlayer.currentTime + 5.0)
+        let totalTime = self.audioManager.audioPlayer.duration
+        if currentTime > totalTime {
+            self.songCompletedTimeLabel.text = self.getTime(time: totalTime)
+            self.audioManager.audioPlayer.currentTime = TimeInterval(totalTime)
+            self.slider.value = Float(totalTime)
+        } else {
+            self.songCompletedTimeLabel.text = self.getTime(time: currentTime)
+            self.audioManager.audioPlayer.currentTime = TimeInterval(currentTime)
+            self.slider.value = Float(currentTime)
+        }
+    }
+    
+    @IBAction func playAndPauseAction(_ sender: UIButton) {
+        if self.isTapOnPlay == false {
+            self.playAudio()
+        } else {
+            self.pauseAudio()
+        }
+    }
+    
+    @IBAction func sliderAction(_ sender: UISlider) {
+        self.audioManager.audioPlayer.currentTime = TimeInterval(slider.value)
+        self.playAudio()
     }
     
     deinit {
@@ -151,7 +178,8 @@ extension SingleSongPlayerViewController {
                     // After prepare to play the audio, do some setup...
                     DispatchQueue.main.async {
                         self?.playPauseButton.isEnabled = true
-                        self?.songTotalTimeLabel.text = self?.getTime(time: (self?.audioManager.getTotalDuration())!)
+                        self?.songTotalTimeLabel.text = self?.getTime(time: (self?.audioManager.audioPlayer.duration)!)
+                        self?.slider.maximumValue = Float((self?.audioManager.audioPlayer.duration)!)
                     }
                 }
             }
@@ -183,6 +211,7 @@ extension SingleSongPlayerViewController {
         DispatchQueue.main.async {
             self.playPauseButton.setImage(UIImage(named: "play"), for: .normal)
             self.progressBar.progress = 0.0
+            self.slider.value = 0
             self.songCompletedTimeLabel.text = "00:00"
         }
     }
@@ -195,6 +224,7 @@ extension SingleSongPlayerViewController {
         DispatchQueue.main.async {
             self.songCompletedTimeLabel.text = self.getTime(time: currentTime)
             self.progressBar.progress = Float(currentTime/totalTime)
+            self.slider.value = Float(currentTime)
         }
         if totalTime <= currentTime {
             self.resetPlayer()

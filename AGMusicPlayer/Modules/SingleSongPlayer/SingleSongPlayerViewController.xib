@@ -16,6 +16,7 @@
                 <outlet property="playPauseButton" destination="Yzy-UO-USf" id="AaZ-2a-ks6"/>
                 <outlet property="previousButton" destination="11Z-Yq-caR" id="cR3-Gl-bD9"/>
                 <outlet property="progressBar" destination="ZaO-kv-lL8" id="mzI-fE-CiJ"/>
+                <outlet property="slider" destination="vNL-rm-xBM" id="gCH-rc-WAb"/>
                 <outlet property="songCompletedTimeLabel" destination="QGC-ei-mKk" id="sMV-4H-o5y"/>
                 <outlet property="songCoverImage" destination="YOC-Er-dWf" id="wHS-4m-Kkm"/>
                 <outlet property="songSubtitleLabel" destination="VIG-37-2N5" id="A18-Sc-ags"/>
@@ -39,6 +40,9 @@
                                 <constraint firstAttribute="width" constant="40" id="fRN-mV-ZMm"/>
                             </constraints>
                             <state key="normal" image="previous"/>
+                            <connections>
+                                <action selector="previousAction:" destination="-1" eventType="touchUpInside" id="wHO-no-TKp"/>
+                            </connections>
                         </button>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YOC-Er-dWf">
                             <rect key="frame" x="50" y="361" width="314" height="150"/>
@@ -53,6 +57,9 @@
                                 <constraint firstAttribute="height" constant="30" id="lUO-or-6Dg"/>
                             </constraints>
                             <state key="normal" image="download"/>
+                            <connections>
+                                <action selector="downloadAction:" destination="-1" eventType="touchUpInside" id="c2E-qK-U4z"/>
+                            </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Charlie Puth - nine track Mind" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VIG-37-2N5">
                             <rect key="frame" x="30" y="598.5" width="354" height="16.5"/>
@@ -79,6 +86,9 @@
                                 <constraint firstAttribute="height" constant="40" id="elc-Rd-mHN"/>
                             </constraints>
                             <state key="normal" image="next"/>
+                            <connections>
+                                <action selector="nextAction:" destination="-1" eventType="touchUpInside" id="7N9-KG-nt1"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yzy-UO-USf">
                             <rect key="frame" x="187" y="728" width="40" height="40"/>
@@ -87,6 +97,9 @@
                                 <constraint firstAttribute="width" constant="40" id="myz-FH-f8t"/>
                             </constraints>
                             <state key="normal" image="play"/>
+                            <connections>
+                                <action selector="playAndPauseAction:" destination="-1" eventType="touchUpInside" id="04S-WW-Dx3"/>
+                            </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Charlie Puth - Nine Track Mind" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QcR-ET-hbt">
                             <rect key="frame" x="30" y="571" width="314" height="19.5"/>
@@ -100,13 +113,21 @@
                                 <constraint firstAttribute="height" constant="5" id="Fn9-2o-ls4"/>
                             </constraints>
                         </progressView>
+                        <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="vNL-rm-xBM">
+                            <rect key="frame" x="28" y="645" width="358" height="31"/>
+                            <connections>
+                                <action selector="sliderAction:" destination="-1" eventType="valueChanged" id="Jnm-cK-Bly"/>
+                            </connections>
+                        </slider>
                     </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                     <constraints>
                         <constraint firstItem="QGC-ei-mKk" firstAttribute="leading" secondItem="onx-Zc-sWm" secondAttribute="leading" constant="30" id="2AM-tk-Gj0"/>
                         <constraint firstItem="VIG-37-2N5" firstAttribute="top" secondItem="QcR-ET-hbt" secondAttribute="bottom" constant="8" id="49q-xq-0kz"/>
                         <constraint firstItem="11Z-Yq-caR" firstAttribute="centerY" secondItem="Yzy-UO-USf" secondAttribute="centerY" id="4Xr-Ph-NOQ"/>
+                        <constraint firstItem="vNL-rm-xBM" firstAttribute="centerY" secondItem="ZaO-kv-lL8" secondAttribute="centerY" id="Dca-hP-umQ"/>
                         <constraint firstItem="Yzy-UO-USf" firstAttribute="leading" secondItem="11Z-Yq-caR" secondAttribute="trailing" constant="50" id="DiE-nt-GpP"/>
+                        <constraint firstAttribute="trailing" secondItem="vNL-rm-xBM" secondAttribute="trailing" constant="30" id="Etn-em-Li4"/>
                         <constraint firstItem="Yzy-UO-USf" firstAttribute="top" secondItem="ZaO-kv-lL8" secondAttribute="bottom" constant="65.5" id="GQZ-3E-GSb"/>
                         <constraint firstItem="Yzy-UO-USf" firstAttribute="centerX" secondItem="onx-Zc-sWm" secondAttribute="centerX" id="Lju-Qq-NWA"/>
                         <constraint firstItem="ZaO-kv-lL8" firstAttribute="leading" secondItem="onx-Zc-sWm" secondAttribute="leading" constant="30" id="OED-gC-irf"/>
@@ -120,6 +141,7 @@
                         <constraint firstAttribute="trailing" secondItem="ZaO-kv-lL8" secondAttribute="trailing" constant="30" id="gOM-Qo-mgE"/>
                         <constraint firstItem="QcR-ET-hbt" firstAttribute="top" secondItem="YOC-Er-dWf" secondAttribute="bottom" constant="60" id="l7C-cb-dLm"/>
                         <constraint firstItem="fZR-h3-bb9" firstAttribute="top" secondItem="ZaO-kv-lL8" secondAttribute="bottom" constant="12.5" id="lMd-ik-FEc"/>
+                        <constraint firstItem="vNL-rm-xBM" firstAttribute="leading" secondItem="onx-Zc-sWm" secondAttribute="leading" constant="30" id="n5z-ei-Acp"/>
                         <constraint firstAttribute="trailing" secondItem="YOC-Er-dWf" secondAttribute="trailing" constant="50" id="nRH-1n-3wk"/>
                         <constraint firstItem="A6s-uZ-qV9" firstAttribute="centerY" secondItem="Yzy-UO-USf" secondAttribute="centerY" id="oDV-8V-XO5"/>
                         <constraint firstItem="YOC-Er-dWf" firstAttribute="leading" secondItem="onx-Zc-sWm" secondAttribute="leading" constant="50" id="qdX-B0-SBu"/>
