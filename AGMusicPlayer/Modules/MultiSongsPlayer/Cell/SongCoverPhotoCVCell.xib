@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -16,23 +17,38 @@
                 <rect key="frame" x="0.0" y="0.0" width="186" height="150"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cover" translatesAutoresizingMaskIntoConstraints="NO" id="DLC-5c-LoA">
-                        <rect key="frame" x="40" y="10" width="106" height="130"/>
-                        <color key="backgroundColor" red="0.52549019610000003" green="0.6588235294" blue="0.90588235289999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    </imageView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KRN-x8-xOO">
+                        <rect key="frame" x="0.0" y="0.0" width="186" height="150"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cover" translatesAutoresizingMaskIntoConstraints="NO" id="Eun-ef-HKc">
+                                <rect key="frame" x="0.0" y="0.0" width="186" height="150"/>
+                                <color key="backgroundColor" red="0.52549019610000003" green="0.6588235294" blue="0.90588235289999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="Eun-ef-HKc" secondAttribute="bottom" id="0VG-vJ-fk9"/>
+                            <constraint firstAttribute="trailing" secondItem="Eun-ef-HKc" secondAttribute="trailing" id="7M9-IA-Qku"/>
+                            <constraint firstItem="Eun-ef-HKc" firstAttribute="leading" secondItem="KRN-x8-xOO" secondAttribute="leading" id="cVh-qR-UTs"/>
+                            <constraint firstItem="Eun-ef-HKc" firstAttribute="top" secondItem="KRN-x8-xOO" secondAttribute="top" id="cWy-3u-MzU"/>
+                        </constraints>
+                    </view>
                 </subviews>
             </view>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="DLC-5c-LoA" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="40" id="5f5-Xa-wAI"/>
-                <constraint firstAttribute="trailing" secondItem="DLC-5c-LoA" secondAttribute="trailing" constant="40" id="7Cy-gm-b98"/>
-                <constraint firstItem="DLC-5c-LoA" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="10" id="PFD-dQ-VK4"/>
-                <constraint firstAttribute="bottom" secondItem="DLC-5c-LoA" secondAttribute="bottom" constant="10" id="qL1-rU-eNK"/>
+                <constraint firstAttribute="bottom" secondItem="KRN-x8-xOO" secondAttribute="bottom" id="4dR-qP-dpR"/>
+                <constraint firstAttribute="trailing" secondItem="KRN-x8-xOO" secondAttribute="trailing" id="jHh-w1-BLT"/>
+                <constraint firstItem="KRN-x8-xOO" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="lt1-eT-lDO"/>
+                <constraint firstItem="KRN-x8-xOO" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="ppD-7N-vTS"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="186" height="150"/>
             <connections>
-                <outlet property="songCoverImage" destination="DLC-5c-LoA" id="J0b-fL-dff"/>
+                <outlet property="cardView" destination="KRN-x8-xOO" id="xIe-Wh-SdT"/>
+                <outlet property="cardViewLeadingConstraint" destination="lt1-eT-lDO" id="TIX-f5-qIA"/>
+                <outlet property="cardViewTrailingConstraint" destination="jHh-w1-BLT" id="fZW-Eh-eLl"/>
+                <outlet property="songCoverImage" destination="Eun-ef-HKc" id="9Wt-B7-sAw"/>
             </connections>
             <point key="canvasLocation" x="227.536231884058" y="164.73214285714286"/>
         </collectionViewCell>

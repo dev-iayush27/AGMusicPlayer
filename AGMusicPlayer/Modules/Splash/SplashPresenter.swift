@@ -17,7 +17,7 @@ extension SplashPresenter {
 
 /// Presenter -> Router
 extension SplashPresenter {
-    func navigateTo(destination: Destination, bundle: [String: Any]) {
-        router?.navigateTo(destination: destination, bundle: bundle)
+    func navigateTo(destination: Destination, bundle: [String: Any], type: Int) {
+        router?.navigateTo(destination: destination, bundle: bundle, type: type)
     }
 }

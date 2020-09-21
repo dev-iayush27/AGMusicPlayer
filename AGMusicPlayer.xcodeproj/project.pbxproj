@@ -8,26 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		482C373E251542800063E367 /* MoyaProviderFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 482C373D251542800063E367 /* MoyaProviderFactory.swift */; };
-		483638EA25094D15003CB440 /* SongsTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 483638E825094D15003CB440 /* SongsTVCell.swift */; };
-		483638EB25094D15003CB440 /* SongsTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 483638E925094D15003CB440 /* SongsTVCell.xib */; };
 		48569C6625162A31007623B0 /* TimeIntervel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48569C6525162A31007623B0 /* TimeIntervel+Extension.swift */; };
+		48708C532517DE1000DB95DB /* CHTCollectionViewDelegateWaterfallLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48708C522517DE1000DB95DB /* CHTCollectionViewDelegateWaterfallLayout.swift */; };
 		487EC21E2515462100093BC7 /* NetworkTargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487EC21D2515462100093BC7 /* NetworkTargetType.swift */; };
-		487EC2242515487B00093BC7 /* SongsListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487EC21F2515487B00093BC7 /* SongsListPresenter.swift */; };
-		487EC2252515487B00093BC7 /* SongsListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487EC2202515487B00093BC7 /* SongsListRouter.swift */; };
-		487EC2262515487B00093BC7 /* SongsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487EC2212515487B00093BC7 /* SongsListViewController.swift */; };
-		487EC2272515487B00093BC7 /* SongsListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 487EC2222515487B00093BC7 /* SongsListViewController.xib */; };
-		487EC2282515487B00093BC7 /* SongsListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487EC2232515487B00093BC7 /* SongsListService.swift */; };
 		487EC22A25154A3900093BC7 /* ViewControllerResultDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487EC22925154A3900093BC7 /* ViewControllerResultDelegate.swift */; };
 		487EC23125154C4500093BC7 /* SplashPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487EC22C25154C4500093BC7 /* SplashPresenter.swift */; };
 		487EC23225154C4500093BC7 /* SplashRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487EC22D25154C4500093BC7 /* SplashRouter.swift */; };
 		487EC23325154C4500093BC7 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487EC22E25154C4500093BC7 /* SplashViewController.swift */; };
 		487EC23425154C4500093BC7 /* SplashViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 487EC22F25154C4500093BC7 /* SplashViewController.xib */; };
 		487EC23525154C4500093BC7 /* SplashService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487EC23025154C4500093BC7 /* SplashService.swift */; };
-		487EC23B25155C1200093BC7 /* SingleSongPlayerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487EC23625155C1200093BC7 /* SingleSongPlayerPresenter.swift */; };
-		487EC23C25155C1200093BC7 /* SingleSongPlayerRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487EC23725155C1200093BC7 /* SingleSongPlayerRouter.swift */; };
-		487EC23D25155C1200093BC7 /* SingleSongPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487EC23825155C1200093BC7 /* SingleSongPlayerViewController.swift */; };
-		487EC23E25155C1200093BC7 /* SingleSongPlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 487EC23925155C1200093BC7 /* SingleSongPlayerViewController.xib */; };
-		487EC23F25155C1200093BC7 /* SingleSongPlayerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487EC23A25155C1200093BC7 /* SingleSongPlayerService.swift */; };
 		487EC24525155C2700093BC7 /* MultiSongPlayerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487EC24025155C2700093BC7 /* MultiSongPlayerPresenter.swift */; };
 		487EC24625155C2700093BC7 /* MultiSongPlayerRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487EC24125155C2700093BC7 /* MultiSongPlayerRouter.swift */; };
 		487EC24725155C2700093BC7 /* MultiSongPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487EC24225155C2700093BC7 /* MultiSongPlayerViewController.swift */; };
@@ -49,31 +38,21 @@
 		48A70C55250C324D005E5969 /* RootRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A70C54250C324D005E5969 /* RootRouter.swift */; };
 		48A70C5F250C4579005E5969 /* ErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A70C5E250C4579005E5969 /* ErrorResponse.swift */; };
 		48B3015F250D65F200C3A05A /* NetworkTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B3015E250D65F200C3A05A /* NetworkTarget.swift */; };
+		48C092BA2518C75100775585 /* player.png in Resources */ = {isa = PBXBuildFile; fileRef = 48C092B92518C75100775585 /* player.png */; };
 		7203C560888EB092D0987358 /* libPods-AGMusicPlayer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B0E1E816DCD969EDC6E93F81 /* libPods-AGMusicPlayer.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		482C373D251542800063E367 /* MoyaProviderFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoyaProviderFactory.swift; sourceTree = "<group>"; };
-		483638E825094D15003CB440 /* SongsTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongsTVCell.swift; sourceTree = "<group>"; };
-		483638E925094D15003CB440 /* SongsTVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SongsTVCell.xib; sourceTree = "<group>"; };
 		48569C6525162A31007623B0 /* TimeIntervel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeIntervel+Extension.swift"; sourceTree = "<group>"; };
+		48708C522517DE1000DB95DB /* CHTCollectionViewDelegateWaterfallLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CHTCollectionViewDelegateWaterfallLayout.swift; sourceTree = "<group>"; };
 		487EC21D2515462100093BC7 /* NetworkTargetType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkTargetType.swift; sourceTree = "<group>"; };
-		487EC21F2515487B00093BC7 /* SongsListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongsListPresenter.swift; sourceTree = "<group>"; };
-		487EC2202515487B00093BC7 /* SongsListRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongsListRouter.swift; sourceTree = "<group>"; };
-		487EC2212515487B00093BC7 /* SongsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongsListViewController.swift; sourceTree = "<group>"; };
-		487EC2222515487B00093BC7 /* SongsListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SongsListViewController.xib; sourceTree = "<group>"; };
-		487EC2232515487B00093BC7 /* SongsListService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongsListService.swift; sourceTree = "<group>"; };
 		487EC22925154A3900093BC7 /* ViewControllerResultDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerResultDelegate.swift; sourceTree = "<group>"; };
 		487EC22C25154C4500093BC7 /* SplashPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashPresenter.swift; sourceTree = "<group>"; };
 		487EC22D25154C4500093BC7 /* SplashRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashRouter.swift; sourceTree = "<group>"; };
 		487EC22E25154C4500093BC7 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		487EC22F25154C4500093BC7 /* SplashViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SplashViewController.xib; sourceTree = "<group>"; };
 		487EC23025154C4500093BC7 /* SplashService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashService.swift; sourceTree = "<group>"; };
-		487EC23625155C1200093BC7 /* SingleSongPlayerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleSongPlayerPresenter.swift; sourceTree = "<group>"; };
-		487EC23725155C1200093BC7 /* SingleSongPlayerRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleSongPlayerRouter.swift; sourceTree = "<group>"; };
-		487EC23825155C1200093BC7 /* SingleSongPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleSongPlayerViewController.swift; sourceTree = "<group>"; };
-		487EC23925155C1200093BC7 /* SingleSongPlayerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SingleSongPlayerViewController.xib; sourceTree = "<group>"; };
-		487EC23A25155C1200093BC7 /* SingleSongPlayerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleSongPlayerService.swift; sourceTree = "<group>"; };
 		487EC24025155C2700093BC7 /* MultiSongPlayerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiSongPlayerPresenter.swift; sourceTree = "<group>"; };
 		487EC24125155C2700093BC7 /* MultiSongPlayerRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiSongPlayerRouter.swift; sourceTree = "<group>"; };
 		487EC24225155C2700093BC7 /* MultiSongPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiSongPlayerViewController.swift; sourceTree = "<group>"; };
@@ -97,6 +76,7 @@
 		48A70C54250C324D005E5969 /* RootRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootRouter.swift; sourceTree = "<group>"; };
 		48A70C5E250C4579005E5969 /* ErrorResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorResponse.swift; sourceTree = "<group>"; };
 		48B3015E250D65F200C3A05A /* NetworkTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkTarget.swift; sourceTree = "<group>"; };
+		48C092B92518C75100775585 /* player.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = player.png; sourceTree = "<group>"; };
 		B0E1E816DCD969EDC6E93F81 /* libPods-AGMusicPlayer.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AGMusicPlayer.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1DA546E507EDDDFA9FC7FF2 /* Pods-AGMusicPlayer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AGMusicPlayer.release.xcconfig"; path = "Target Support Files/Pods-AGMusicPlayer/Pods-AGMusicPlayer.release.xcconfig"; sourceTree = "<group>"; };
 		FBAB187D370566E169816E84 /* Pods-AGMusicPlayer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AGMusicPlayer.debug.xcconfig"; path = "Target Support Files/Pods-AGMusicPlayer/Pods-AGMusicPlayer.debug.xcconfig"; sourceTree = "<group>"; };
@@ -114,40 +94,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		483638E625094CEE003CB440 /* SongsList */ = {
-			isa = PBXGroup;
-			children = (
-				483638E725094CFF003CB440 /* Cell */,
-				487EC21F2515487B00093BC7 /* SongsListPresenter.swift */,
-				487EC2202515487B00093BC7 /* SongsListRouter.swift */,
-				487EC2232515487B00093BC7 /* SongsListService.swift */,
-				487EC2212515487B00093BC7 /* SongsListViewController.swift */,
-				487EC2222515487B00093BC7 /* SongsListViewController.xib */,
-			);
-			path = SongsList;
-			sourceTree = "<group>";
-		};
-		483638E725094CFF003CB440 /* Cell */ = {
-			isa = PBXGroup;
-			children = (
-				483638E825094D15003CB440 /* SongsTVCell.swift */,
-				483638E925094D15003CB440 /* SongsTVCell.xib */,
-			);
-			path = Cell;
-			sourceTree = "<group>";
-		};
-		483638EC25094E1D003CB440 /* SingleSongPlayer */ = {
-			isa = PBXGroup;
-			children = (
-				487EC23625155C1200093BC7 /* SingleSongPlayerPresenter.swift */,
-				487EC23725155C1200093BC7 /* SingleSongPlayerRouter.swift */,
-				487EC23A25155C1200093BC7 /* SingleSongPlayerService.swift */,
-				487EC23825155C1200093BC7 /* SingleSongPlayerViewController.swift */,
-				487EC23925155C1200093BC7 /* SingleSongPlayerViewController.xib */,
-			);
-			path = SingleSongPlayer;
-			sourceTree = "<group>";
-		};
 		483638F125094E58003CB440 /* Application */ = {
 			isa = PBXGroup;
 			children = (
@@ -209,8 +155,6 @@
 			children = (
 				483638F625094ED2003CB440 /* LaunchScreen */,
 				487EC22B25154C2700093BC7 /* Splash */,
-				483638E625094CEE003CB440 /* SongsList */,
-				483638EC25094E1D003CB440 /* SingleSongPlayer */,
 				4881A2552508199200AEB390 /* MultiSongsPlayer */,
 			);
 			path = Modules;
@@ -249,6 +193,7 @@
 		4881A23C2508105100AEB390 /* AGMusicPlayer */ = {
 			isa = PBXGroup;
 			children = (
+				48C092B62518C1E600775585 /* Screenshot */,
 				483638F125094E58003CB440 /* Application */,
 				48A70C50250C26BE005E5969 /* Helper */,
 				483638F225094E80003CB440 /* Resources */,
@@ -327,11 +272,20 @@
 		48A70C5B250C3A8C005E5969 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				48708C522517DE1000DB95DB /* CHTCollectionViewDelegateWaterfallLayout.swift */,
 				4881A25625081B7100AEB390 /* UIApplication+Extension.swift */,
 				48569C6525162A31007623B0 /* TimeIntervel+Extension.swift */,
 				48A6BAE125167A05002A8A06 /* UIViewController+Extension.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		48C092B62518C1E600775585 /* Screenshot */ = {
+			isa = PBXGroup;
+			children = (
+				48C092B92518C75100775585 /* player.png */,
+			);
+			path = Screenshot;
 			sourceTree = "<group>";
 		};
 		8CA9A2F8C2380CABCA5E4389 /* Frameworks */ = {
@@ -411,10 +365,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				487EC24825155C2700093BC7 /* MultiSongPlayerViewController.xib in Resources */,
-				487EC23E25155C1200093BC7 /* SingleSongPlayerViewController.xib in Resources */,
 				487EC23425154C4500093BC7 /* SplashViewController.xib in Resources */,
-				487EC2272515487B00093BC7 /* SongsListViewController.xib in Resources */,
-				483638EB25094D15003CB440 /* SongsTVCell.xib in Resources */,
+				48C092BA2518C75100775585 /* player.png in Resources */,
 				4881A24A2508105300AEB390 /* LaunchScreen.storyboard in Resources */,
 				4881A25C2508202100AEB390 /* SongCoverPhotoCVCell.xib in Resources */,
 				4881A2472508105300AEB390 /* Assets.xcassets in Resources */,
@@ -453,16 +405,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				487EC2252515487B00093BC7 /* SongsListRouter.swift in Sources */,
 				487EC22A25154A3900093BC7 /* ViewControllerResultDelegate.swift in Sources */,
-				487EC23C25155C1200093BC7 /* SingleSongPlayerRouter.swift in Sources */,
-				483638EA25094D15003CB440 /* SongsTVCell.swift in Sources */,
 				48A70C55250C324D005E5969 /* RootRouter.swift in Sources */,
 				48A70C41250C0B90005E5969 /* APICacheManager.swift in Sources */,
-				487EC2262515487B00093BC7 /* SongsListViewController.swift in Sources */,
 				487EC24925155C2700093BC7 /* MultiSongPlayerService.swift in Sources */,
 				487EC21E2515462100093BC7 /* NetworkTargetType.swift in Sources */,
-				487EC23D25155C1200093BC7 /* SingleSongPlayerViewController.swift in Sources */,
 				4881A26025082C8500AEB390 /* HTTPFacade.swift in Sources */,
 				4881A23E2508105100AEB390 /* AppDelegate.swift in Sources */,
 				48A6BAE225167A05002A8A06 /* UIViewController+Extension.swift in Sources */,
@@ -474,17 +421,14 @@
 				487EC24625155C2700093BC7 /* MultiSongPlayerRouter.swift in Sources */,
 				482C373E251542800063E367 /* MoyaProviderFactory.swift in Sources */,
 				48A6BAE525168ECF002A8A06 /* AudioManager.swift in Sources */,
-				487EC23F25155C1200093BC7 /* SingleSongPlayerService.swift in Sources */,
+				48708C532517DE1000DB95DB /* CHTCollectionViewDelegateWaterfallLayout.swift in Sources */,
 				48B3015F250D65F200C3A05A /* NetworkTarget.swift in Sources */,
-				487EC23B25155C1200093BC7 /* SingleSongPlayerPresenter.swift in Sources */,
 				487EC24525155C2700093BC7 /* MultiSongPlayerPresenter.swift in Sources */,
 				48569C6625162A31007623B0 /* TimeIntervel+Extension.swift in Sources */,
 				487EC23325154C4500093BC7 /* SplashViewController.swift in Sources */,
-				487EC2242515487B00093BC7 /* SongsListPresenter.swift in Sources */,
 				48A70C49250C25BC005E5969 /* NetworkError.swift in Sources */,
 				487EC23525154C4500093BC7 /* SplashService.swift in Sources */,
 				48A70C5F250C4579005E5969 /* ErrorResponse.swift in Sources */,
-				487EC2282515487B00093BC7 /* SongsListService.swift in Sources */,
 				487EC23225154C4500093BC7 /* SplashRouter.swift in Sources */,
 				487EC23125154C4500093BC7 /* SplashPresenter.swift in Sources */,
 			);

@@ -21,7 +21,7 @@ class SplashRouter {
         return viewController
     }
     
-    func navigateTo(destination: Destination, bundle: [String: Any]) {
-        RootRouter().navigate(to: destination, bundle: bundle)
+    func navigateTo(destination: Destination, bundle: [String: Any], type: Int) {
+        RootRouter().navigate(to: destination, bundle: bundle, type: type)
     }
 }

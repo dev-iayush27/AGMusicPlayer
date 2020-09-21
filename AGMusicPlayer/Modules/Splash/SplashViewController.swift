@@ -23,7 +23,7 @@ class SplashViewController: UIViewController {
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
+        return .default
     }
     
     /// Function to configure navigation bar
@@ -40,7 +40,7 @@ class SplashViewController: UIViewController {
     /// Function to initialize view components
     private func initViews() {
         DispatchQueue.main.asyncAfter(deadline: .now()+3) {
-            self.presenter?.navigateTo(destination: Destination.songsList, bundle: [:])
+            self.presenter?.navigateTo(destination: Destination.multiSongPlayer, bundle: [:], type: 1)
         }
     }
     

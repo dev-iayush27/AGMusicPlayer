@@ -11,8 +11,6 @@ import UIKit
 
 enum Destination {
     case splash
-    case songsList
-    case singleSongPlayer
     case multiSongPlayer
 }
 
@@ -20,14 +18,13 @@ public class RootRouter {
     public init() {}
     
     func showRootScreen() {
-        let viewController = makeViewController(for: Destination.songsList, bundle: [:])
+        let viewController = makeViewController(for: Destination.splash, bundle: [:])
         showViewController(viewController, inWindow: AppDelegate.currentWindow)
     }
     
     func showViewController(_ viewController: UIViewController, inWindow: UIWindow) {
         let navigationController = UINavigationController(rootViewController: viewController)
-        navigationController.isNavigationBarHidden = false
-        navigationController.navigationBar.prefersLargeTitles = false
+        navigationController.isNavigationBarHidden = true
         inWindow.rootViewController = navigationController
         inWindow.makeKeyAndVisible()
     }
@@ -57,10 +54,6 @@ public class RootRouter {
         switch destination {
         case .splash:
             return SplashRouter.assembleModule(bundle: bundle)
-        case .songsList:
-            return SongsListRouter.assembleModule(bundle: bundle)
-        case .singleSongPlayer:
-            return SingleSongPlayerRouter.assembleModule(bundle: bundle)
         case .multiSongPlayer:
             return MultiSongPlayerRouter.assembleModule(bundle: bundle)
         }
